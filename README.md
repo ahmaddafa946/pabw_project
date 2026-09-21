@@ -11,3 +11,5 @@ Topik halaman saya: Playlist Film Favorite.
 - Kolom tabel: judul, penulis, tahun terbit, status baca
 - Kolom form: judul, Tahun Rilis, Rating
 - Gambar: avenger.jpg, infinity.jpg, ironman.jpg
+## Catatan penggunaan AI
+-tidak memakai AI.

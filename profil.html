@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+  KERANGKA AWAL — Halaman Profil Saya
+  PABW 2026/2027 · Pertemuan 3
+
+  Cara pakai:
+  1. Salin berkas ini, ganti nama menjadi profil.html
+  2. Ganti setiap tulisan TODO dengan isi milik Anda SENDIRI
+  3. Simpan, lalu buka di peramban (F5 untuk memuat ulang)
+  4. Kerjakan berurutan mengikuti Lembar B, C, D, dan E pada worksheet
+
+  Jangan menghapus komentar TODO sebelum bagian itu Anda kerjakan —
+  komentar itu adalah daftar periksa Anda sendiri.
+-->
+<html>
+
+<head>
+  <title>Daftar Film</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+  <!-- TODO C.1: buat <header> di sini.
+       Isinya: satu <h1> berisi judul halaman Anda.
+       Di dalamnya juga ada <nav> berisi 3 tautan ke bagian halaman. -->
+  <header>
+
+    <h1>Playlist film Favorite</h1>
+    <nav>
+      <ul>
+        <li><a href="#bagian1">Bagian 1</a></li>
+        <li><a href="#bagian2">Bagian 2</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- TODO C.2: buat <main> di sini sebagai pembungkus semua bagian isi.
+       Di dalamnya ada 2 <section>, masing-masing punya <h2> sendiri. -->
+  <main>
+    <section id="bagian1">
+      <h2>List Film</h2>
+      <table>
+        <caption> </caption>
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Judul Film</th>
+            <th scope="col">Tahun Rilis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>
+              <figure>
+                <img src="avanger.jpg" alt="___jelaskan isi gambar dalam satu kalimat___" width="640" height="980"
+                  loading="lazy">
+                <figcaption>Avanger Endgame</figcaption>
+              </figure>
+            </td>
+            <td>Avanger End Game</td>
+            <td>2019</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>
+              <figure>
+                <img src="ironman3.jpg" alt="___jelaskan isi gambar dalam satu kalimat___" width="640" height="980"
+                  loading="lazy">
+                <figcaption>IronMan 3</figcaption>
+              </figure>
+            </td>
+            <td>Iron Man 3</td>
+            <td>2013</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>
+              <figure>
+                <img src="infinity.jpg" alt="___jelaskan isi gambar dalam satu kalimat___" width="640" height="980" loading="lazy">
+                <figcaption>Avanger Infinity War</figcaption>
+              </figure>
+            </td>
+            <td>Avanger Infinity War</td>
+            <td>2018</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="bagian2">
+      <h2>Tambah Film</h2>
+
+      <form action="/simpan" method="post">
+        <p>
+          <label for="nama-kolom">judul</label>
+          <input type="text" id="nama-kolom" name="nama-kolom" required>
+        </p>
+        <!-- tambahkan minimal dua kolom lagi -->
+         <p>
+          <label for="nama-kolom2">tahun</label>
+          <input type="text" id="nama-kolom2" name="nama-kolom2" required>
+         </p>
+         <p>
+          <label for="nama-kolom3">Rating</label>
+          <input type="text" id="nama-kolom3" name="nama-kolom3" required>
+         </p>
+        <button type="submit">Simpan</button>
+      </form>
+    </section>
+
+    <footer>
+      <p>Ahmad Dafa Ardevanda, 25523179, 2026</p>
+    </footer>
+
+  </main>
+
+  <!-- TODO D.1: di dalam section pertama, buat tabel data Anda.
+         Wajib ada: <caption>, <thead>, <th scope="col">, dan minimal 3 baris data. -->
+
+
+  <!-- TODO E.1: di dalam section kedua, buat form Anda.
+         Wajib ada: minimal 3 kolom, setiap kolom punya <label for> yang
+         cocok dengan id input-nya, dan satu atribut validasi. -->
+
+  <!-- TODO C.3: buat <footer> di sini.
+       Isinya: nama Anda, NIM Anda, dan tahun. -->
+
+</body>
+
+</html>

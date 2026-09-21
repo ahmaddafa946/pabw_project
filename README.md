@@ -6,8 +6,8 @@ Berbasis Web, satu folder untuk setiap pertemuan.
 Topik halaman saya: Playlist Film Favorite.
 - Judul halaman: Daftar Film
 - Deskripsi: daftar film favorite saya
-- Tautan navigasi: Daftar Buku, Tambah Buku, Tentang Saya
+- Tautan navigasi: List film, Tambah Film, Tentang Saya
 - Dua bagian utama: Daftar Buku, Tambah Buku
 - Kolom tabel: judul, penulis, tahun terbit, status baca
-- Kolom form: judul, penulis, status baca
-- Gambar: koleksi-1.webp
+- Kolom form: judul, Tahun Rilis, Rating
+- Gambar: avenger.jpg, infinity.jpg, ironman.jpg

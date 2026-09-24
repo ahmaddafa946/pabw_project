@@ -23,8 +23,6 @@
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="komponen.css">
   <link rel="stylesheet" href="tema.css">
-
-
 </head>
 
 <body>
@@ -32,12 +30,12 @@
   <!-- TODO C.1: buat <header> di sini.
        Isinya: satu <h1> berisi judul halaman Anda.
        Di dalamnya juga ada <nav> berisi 3 tautan ke bagian halaman. -->
-  <input type="checkbox" id="tema" class="pengalih-tema">
-  <label for="tema" class="tombol-tema">Tema gelap</label>
-
   <header>
+    <input type="checkbox" id="tema" class="pengalih-tema">
+    <label for="tema" class="tombol-tema">Tema gelap</label>
+
     <div class="header-baris">
-      <h1>Playlist film Favorite</h1>
+      <h1>Playlist Film Favorit</h1>
       <nav>
         <ul>
           <li><a href="#list-film">List Film</a></li>
@@ -54,88 +52,71 @@
   <main>
     <section id="list-film">
       <h2>List Film</h2>
-      <table>
-        <caption> </caption>
-        <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Judul Film</th>
-            <th scope="col">Tahun Rilis</th>
-            <th scope="col">Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>
-              <figure>
-                <img src="avanger.jpg"
-                  alt="Lima tahun setelah Snap, Avengers menemukan cara melakukan perjalanan waktu untuk mengambil Infinity Stones dari masa lalu. Mereka berhasil mengalahkan Thanos, tetapi Tony Stark mengorbankan dirinya dengan menggunakan Infinity Stones untuk menyelamatkan alam semesta."
-                  width="640" height="980" loading="lazy">
-                <figcaption>Avanger Endgame</figcaption>
-              </figure>
-            </td>
-            <td>2019</td>
-            <td>8.4</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>
-              <figure>
-                <img src="ironman3.jpg"
-                  alt="Tony Stark mengalami trauma setelah Avengers 1. Ia menjadi terobsesi membuat armor, tetapi akhirnya sadar bahwa Iron Man bukan hanya armor, melainkan dirinya sendiri."
-                  width="640" height="980" loading="lazy">
-                <figcaption>IronMan 3</figcaption>
-              </figure>
-            </td>
-            <td>2013</td>
-            <td>7.2</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>
-              <figure>
-                <img src="infinity.jpg"
-                  alt="Thanos mengumpulkan 6 Infinity Stones untuk menghapus setengah kehidupan di alam semesta. Avengers gagal menghentikannya dan Thanos berhasil melakukan Snap, membuat setengah makhluk hidup menghilang."
-                  width="640" height="980" loading="lazy">
-                <figcaption>Avanger Infinity War</figcaption>
-              </figure>
-            </td>
-            <td>2018</td>
-            <td>8.4</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="katalog">
+        <div class="kartu">
+          <figure>
+            <img src="avanger.jpg"
+              alt="Lima tahun setelah Snap, Avengers menemukan cara melakukan perjalanan waktu untuk mengambil Infinity Stones dari masa lalu. Mereka berhasil mengalahkan Thanos, tetapi Tony Stark mengorbankan dirinya dengan menggunakan Infinity Stones untuk menyelamatkan alam semesta."
+              width="640" height="980" loading="lazy">
+            <figcaption>Avanger Endgame</figcaption>
+          </figure>
+          <p>Tahun Rilis: 2019</p>
+          <p>Rating: 8.4</p>
+        </div>
+
+        <div class="kartu">
+          <figure>
+            <img src="ironman3.jpg"
+              alt="Tony Stark mengalami trauma setelah Avengers 1. Ia menjadi terobsesi membuat armor, tetapi akhirnya sadar bahwa Iron Man bukan hanya armor, melainkan dirinya sendiri."
+              width="640" height="980" loading="lazy">
+            <figcaption>IronMan 3</figcaption>
+          </figure>
+          <p>Tahun Rilis: 2013</p>
+          <p>Rating: 7.1</p>
+        </div>
+
+        <div class="kartu">
+          <figure>
+            <img src="infinity.jpg"
+              alt="Thanos mengumpulkan 6 Infinity Stones untuk menghapus setengah kehidupan di alam semesta. Avengers gagal menghentikannya dan Thanos berhasil melakukan Snap, membuat setengah makhluk hidup menghilang."
+              width="640" height="980" loading="lazy">
+            <figcaption>Avanger Infinity War</figcaption>
+          </figure>
+          <p>Tahun Rilis: 2018</p>
+          <p>Rating: 8.2</p>
+        </div>
+      </div>
     </section>
 
     <section id="tambah-film">
       <h2>Tambah Film</h2>
+      <div class="katalog">
+        <div class="kartu">
+          <form action="/simpan" method="post">
+            <div class="form-kolom">
+              <label for="judul-kolom">Judul</label>
+              <input type="text" id="judul-kolom" name="judul-kolom" required>
+              <span class="pesan-galat">Judul film wajib diisi.</span>
+            </div>
 
-      <form action="/simpan" method="post">
-        <p>
-          <label for="judul-kolom">judul</label>
-          <input type="text" id="judul-kolom" name="judul-kolom" required>
-        </p>
-        <!-- tambahkan minimal dua kolom lagi -->
-        <p>
-          <label for="tahun-kolom">tahun Rilis</label>
-          <input type="number" id="tahun-kolom" name="tahun-kolom" required>
-        </p>
-        <p>
-          <label for="rating-kolom">Rating</label>
-          <input type="number" id="rating-kolom" name="rating-kolom" required>
-        </p>
-        <button type="submit">Simpan</button>
-      </form>
+            <!-- tambahkan minimal dua kolom lagi -->
+            <div class="form-kolom">
+              <label for="tahun-kolom">Tahun Rilis</label>
+              <input type="number" id="tahun-kolom" name="tahun-kolom" min="1888" max="2026" required>
+              <span class="pesan-galat">Masukkan tahun rilis yang valid.</span>
+            </div>
+
+            <div class="form-kolom">
+              <label for="rating-kolom">Rating</label>
+              <input type="number" id="rating-kolom" name="rating-kolom" min="0" max="10" step="0.1" required>
+              <span class="pesan-galat">Rating harus berada antara 0 sampai 10.</span>
+            </div>
+
+            <button type="submit">Simpan</button>
+          </form>
+        </div>
+      </div>
     </section>
-
-    <section id="footer">
-      <h2>Tentang Saya</h2>
-      <p>Nama: Ahmad Dafa Ardevanda</p>
-      <p>NIM: 25523179</p>
-      <p>Tahun: 2026</p>
-    </section>
-
   </main>
 
   <!-- TODO D.1: di dalam section pertama, buat tabel data Anda.
@@ -148,6 +129,12 @@
 
   <!-- TODO C.3: buat <footer> di sini.
        Isinya: nama Anda, NIM Anda, dan tahun. -->
+  <footer id="footer">
+    <h3>Tentang Saya</h3>
+    <p>Nama: Ahmad Dafa Ardevanda</p>
+    <p>NIM: 25523179</p>
+    <p>Tahun: 2026</p>
+  </footer>
 
 </body>
 

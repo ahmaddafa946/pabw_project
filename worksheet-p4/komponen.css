@@ -1,14 +1,18 @@
-.form-kolom {
+h1, h2 {
+  color: var(--color-primary);
+}
+
+ .form-kolom {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);          /* jarak label ke isian, seragam */
 }
- 
+
 label {
   font-size: var(--text-sm);
   font-weight: 600;
 }
- 
+
 input, select, textarea {
   font: inherit;                /* kolom isian ikut ukuran huruf halaman */
   padding: var(--space-2) var(--space-3);
@@ -17,13 +21,30 @@ input, select, textarea {
   background: var(--color-surface);
   color: var(--color-fg);
 }
- 
+
 button {
   font: inherit;
   padding: var(--space-2) var(--space-4);
   border: 1px solid transparent;
   border-radius: var(--radius-md);
   background: var(--color-primary);
-  color: var(--color-surface);
+  color: var(--color-on-primary);
   cursor: pointer;
 }
+
+button:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+input:user-invalid {
+  border-color: var(--color-danger);
+  border-width: 2px;
+}
+
+.pesan-galat { display: none; color: var(--color-danger); font-size: var(--text-sm); }
+.form-kolom:has(input:user-invalid) .pesan-galat { display: block; }

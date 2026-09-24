@@ -18,7 +18,13 @@
   <title>Daftar Film</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="komponen.css">
+  <link rel="stylesheet" href="tema.css">
+
+
 </head>
 
 <body>
@@ -26,16 +32,20 @@
   <!-- TODO C.1: buat <header> di sini.
        Isinya: satu <h1> berisi judul halaman Anda.
        Di dalamnya juga ada <nav> berisi 3 tautan ke bagian halaman. -->
-  <header>
+  <input type="checkbox" id="tema" class="pengalih-tema">
+  <label for="tema" class="tombol-tema">Tema gelap</label>
 
-    <h1>Playlist film Favorite</h1>
-    <nav>
-      <ul>
-        <li><a href="#list-film">List Film</a></li>
-        <li><a href="#tambah-film">Tambah Film</a></li>
-        <li><a href="#footer">Tentang Saya</a></li>
-      </ul>
-    </nav>
+  <header>
+    <div class="header-baris">
+      <h1>Playlist film Favorite</h1>
+      <nav>
+        <ul>
+          <li><a href="#list-film">List Film</a></li>
+          <li><a href="#tambah-film">Tambah Film</a></li>
+          <li><a href="#footer">Tentang Saya</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
 

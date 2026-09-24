@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+  KERANGKA AWAL — Halaman Profil Saya
+  PABW 2026/2027 · Pertemuan 3
+
+  Cara pakai:
+  1. Salin berkas ini, ganti nama menjadi profil.html
+  2. Ganti setiap tulisan TODO dengan isi milik Anda SENDIRI
+  3. Simpan, lalu buka di peramban (F5 untuk memuat ulang)
+  4. Kerjakan berurutan mengikuti Lembar B, C, D, dan E pada worksheet
+
+  Jangan menghapus komentar TODO sebelum bagian itu Anda kerjakan —
+  komentar itu adalah daftar periksa Anda sendiri.
+-->
+<html lang="id">
+
+<head>
+  <title>Daftar Film</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- TODO C.1: buat <header> di sini.
+       Isinya: satu <h1> berisi judul halaman Anda.
+       Di dalamnya juga ada <nav> berisi 3 tautan ke bagian halaman. -->
+  <header>
+
+    <h1>Playlist film Favorite</h1>
+    <nav>
+      <ul>
+        <li><a href="#list-film">List Film</a></li>
+        <li><a href="#tambah-film">Tambah Film</a></li>
+        <li><a href="#footer">Tentang Saya</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- TODO C.2: buat <main> di sini sebagai pembungkus semua bagian isi.
+       Di dalamnya ada 2 <section>, masing-masing punya <h2> sendiri. -->
+  <main>
+    <section id="list-film">
+      <h2>List Film</h2>
+      <table>
+        <caption> </caption>
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Judul Film</th>
+            <th scope="col">Tahun Rilis</th>
+            <th scope="col">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>
+              <figure>
+                <img src="avanger.jpg"
+                  alt="Lima tahun setelah Snap, Avengers menemukan cara melakukan perjalanan waktu untuk mengambil Infinity Stones dari masa lalu. Mereka berhasil mengalahkan Thanos, tetapi Tony Stark mengorbankan dirinya dengan menggunakan Infinity Stones untuk menyelamatkan alam semesta."
+                  width="640" height="980" loading="lazy">
+                <figcaption>Avanger Endgame</figcaption>
+              </figure>
+            </td>
+            <td>2019</td>
+            <td>8.4</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>
+              <figure>
+                <img src="ironman3.jpg"
+                  alt="Tony Stark mengalami trauma setelah Avengers 1. Ia menjadi terobsesi membuat armor, tetapi akhirnya sadar bahwa Iron Man bukan hanya armor, melainkan dirinya sendiri."
+                  width="640" height="980" loading="lazy">
+                <figcaption>IronMan 3</figcaption>
+              </figure>
+            </td>
+            <td>2013</td>
+            <td>7.2</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>
+              <figure>
+                <img src="infinity.jpg"
+                  alt="Thanos mengumpulkan 6 Infinity Stones untuk menghapus setengah kehidupan di alam semesta. Avengers gagal menghentikannya dan Thanos berhasil melakukan Snap, membuat setengah makhluk hidup menghilang."
+                  width="640" height="980" loading="lazy">
+                <figcaption>Avanger Infinity War</figcaption>
+              </figure>
+            </td>
+            <td>2018</td>
+            <td>8.4</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="tambah-film">
+      <h2>Tambah Film</h2>
+
+      <form action="/simpan" method="post">
+        <p>
+          <label for="judul-kolom">judul</label>
+          <input type="text" id="judul-kolom" name="judul-kolom" required>
+        </p>
+        <!-- tambahkan minimal dua kolom lagi -->
+        <p>
+          <label for="tahun-kolom">tahun Rilis</label>
+          <input type="number" id="tahun-kolom" name="tahun-kolom" required>
+        </p>
+        <p>
+          <label for="rating-kolom">Rating</label>
+          <input type="number" id="rating-kolom" name="rating-kolom" required>
+        </p>
+        <button type="submit">Simpan</button>
+      </form>
+    </section>
+
+    <section id="footer">
+      <h2>Tentang Saya</h2>
+      <p>Nama: Ahmad Dafa Ardevanda</p>
+      <p>NIM: 25523179</p>
+      <p>Tahun: 2026</p>
+    </section>
+
+  </main>
+
+  <!-- TODO D.1: di dalam section pertama, buat tabel data Anda.
+         Wajib ada: <caption>, <thead>, <th scope="col">, dan minimal 3 baris data. -->
+
+
+  <!-- TODO E.1: di dalam section kedua, buat form Anda.
+         Wajib ada: minimal 3 kolom, setiap kolom punya <label for> yang
+         cocok dengan id input-nya, dan satu atribut validasi. -->
+
+  <!-- TODO C.3: buat <footer> di sini.
+       Isinya: nama Anda, NIM Anda, dan tahun. -->
+
+</body>
+
+</html>

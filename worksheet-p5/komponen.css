@@ -1,11 +1,64 @@
-h1, h2 {
+h1,
+h2 {
   color: var(--color-primary);
 }
 
- .form-kolom {
+.galeri {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.katalog {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.kartu {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);          /* jarak label ke isian, seragam */
+  gap: var(--space-3);
+  min-width: 0;
+  min-height: 14rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  padding: var(--card-pad);
+}
+
+.kartu figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.kartu img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+.kartu figcaption,
+.kartu p {
+  overflow-wrap: anywhere;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.form-kolom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
 }
 
 label {
@@ -13,23 +66,12 @@ label {
   font-weight: 600;
 }
 
-.galeri {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: var(--space-4);
-}
-
-.kartu__kaki {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
-
-
-
-input, select, textarea {
-  font: inherit;                /* kolom isian ikut ukuran huruf halaman */
+input,
+select,
+textarea {
+  width: 100%;
+  min-width: 0;
+  font: inherit;
   padding: var(--space-2) var(--space-3);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -38,6 +80,7 @@ input, select, textarea {
 }
 
 button {
+  align-self: flex-start;
   font: inherit;
   padding: var(--space-2) var(--space-4);
   border: 1px solid transparent;
@@ -61,5 +104,13 @@ input:user-invalid {
   border-width: 2px;
 }
 
-.pesan-galat { display: none; color: var(--color-danger); font-size: var(--text-sm); }
-.form-kolom:has(input:user-invalid) .pesan-galat { display: block; }
+.pesan-galat {
+  display: none;
+  color: var(--color-danger);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+.form-kolom:has(input:user-invalid) .pesan-galat {
+  display: block;
+}

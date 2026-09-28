@@ -11,14 +11,16 @@ header {
   flex-wrap: wrap;
 }
 
-.navbar,
-.navbar ul {
+.navbar {
   display: flex;
   align-items: center;
   gap: var(--space-4);
 }
 
 .navbar ul {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
   list-style: none;
   padding: 0;
   flex-wrap: wrap;
@@ -41,7 +43,7 @@ header {
 
 .isi {
   display: grid;
-  grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+  grid-template-columns: 16rem 1fr;
   gap: var(--space-6);
   padding-block: var(--space-6);
   min-width: 0;

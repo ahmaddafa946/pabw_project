@@ -42,6 +42,15 @@ h2 {
   border-radius: var(--radius-md);
 }
 
+.kartu__kaki {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+
+
 .kartu figcaption,
 .kartu p {
   overflow-wrap: anywhere;

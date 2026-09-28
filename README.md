@@ -66,7 +66,7 @@ Implementasi P5 menggunakan kembali konten, warna, dan design token dari Pertemu
 | Bagian | Pilihan |
 |---|---|
 | Baris halaman | `auto 1fr auto` |
-| Kolom area isi | `1fr 1fr` |
+| Kolom area isi | `16rem 1fr` |
 | Sumbu navbar | horizontal |
 | Navbar | Flex |
 | Area isi | Grid |
@@ -79,7 +79,7 @@ Implementasi P5 menggunakan kembali konten, warna, dan design token dari Pertemu
 - Kerangka halaman: CSS Grid dengan tiga baris `auto 1fr auto`
 - Tinggi minimum: `100dvh`
 - Navbar: Flexbox dengan `gap`
-- Area isi: Grid dua kolom menggunakan `minmax(0, 1fr)`
+- Area isi: Grid dua kolom menggunakan `16rem 1fr` dengan `minmax(0, ...)` agar item tetap dapat menyusut
 
 ### C. Kartu dan galeri
 
@@ -87,7 +87,7 @@ Galeri menggunakan `repeat(auto-fit, minmax(16rem, 1fr))`, sehingga jumlah kolom
 
 ### D. Penempatan
 
-Bagian **List Film** memakai span pada dua kolom dengan `grid-column: 1 / -1`. Bagian **Tambah Film** ditempatkan pada kolom kedua.
+Bagian **List Film** dan **Tambah Film** masing-masing memakai `grid-column: span 2`, sehingga dua blok memenuhi syarat penempatan span dan tetap rapi pada lebar sempit.
 
 ### E. Tiga kasus sulit
 

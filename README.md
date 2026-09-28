@@ -59,67 +59,222 @@ Bantuan AI digunakan untuk menyesuaikan struktur CSS dan HTML dengan kriteria Wo
 
 ## Layout Modern: Flexbox dan Grid
 
-Implementasi P5 menggunakan kembali konten, warna, dan design token dari Pertemuan 4. Perubahan utama berada pada mekanisme layout.
+Folder P5 saat ini memakai struktur berikut:
 
-### A. Kerangka halaman
+`worksheet-p5/`
+- `profil.html`
+- `css/base.css`
+- `css/komponen.css`
+- `css/layout.css`
+- `css/tema.css`
+- `css/tokens.css`
+- `img/avanger.jpg`
+- `img/ironman3.jpg`
+- `img/infinity.jpg`
 
-| Bagian | Pilihan |
-|---|---|
-| Baris halaman | `auto 1fr auto` |
-| Kolom area isi | `16rem 1fr` |
-| Sumbu navbar | horizontal |
-| Navbar | Flex |
-| Area isi | Grid |
-| Galeri kartu | Grid |
-| Isi kartu | Flex |
+Konten, warna, design token, dan tema dari Pertemuan 4 tetap digunakan. Perubahan P5 berfokus pada tata letak dengan Grid dan Flexbox.
 
-### B. Kerangka dan navbar
+### A — Kerangka halaman
 
-- Pembungkus terluar: `.page`
-- Kerangka halaman: CSS Grid dengan tiga baris `auto 1fr auto`
-- Tinggi minimum: `100dvh`
-- Navbar: Flexbox dengan `gap`
-- Area isi: Grid dua kolom menggunakan `16rem 1fr` dengan `minmax(0, ...)` agar item tetap dapat menyusut
+**A.1 Kerangka halaman**
+- Baris pertama: `auto`
+- Baris kedua: `1fr`
+- Baris ketiga: `auto`
+- Kolom area isi: `16rem 1fr`
 
-### C. Kartu dan galeri
+**A.2 Sumbu dan arah**
+- Navbar: horizontal; sumbu utama horizontal, sumbu silang vertikal.
+- Bagian bawah kartu: horizontal; sumbu utama horizontal, sumbu silang vertikal.
+- Daftar menu: vertikal; sumbu utama vertikal, sumbu silang horizontal.
 
-Galeri menggunakan `repeat(auto-fit, minmax(16rem, 1fr))`, sehingga jumlah kolom dapat berubah mengikuti ruang yang tersedia tanpa media query. Isi kartu menggunakan Flexbox.
+**A.3 Kapan flex, kapan grid**
+- Kepala halaman: Flexbox, karena judul dan navbar disusun dalam satu arah.
+- Isi dua kolom: Grid, karena membagi area dalam baris dan kolom.
+- Galeri kartu: Grid, karena kartu disusun dalam beberapa kolom adaptif.
+- Isi satu kartu: Flexbox, karena elemen kartu dapat disusun dalam satu arah.
 
-### D. Penempatan
+### B — layout.css
 
-Bagian **List Film** dan **Tambah Film** masing-masing memakai `grid-column: span 2`, sehingga dua blok memenuhi syarat penempatan span dan tetap rapi pada lebar sempit.
+**B.1 Kerangka halaman**
 
-### E. Tiga kasus sulit
+Di `profil.html`, class `.page` membungkus `header`, `main`, dan `footer`.
 
-1. Tinggi kartu: kartu memakai `min-height: 14rem`.
-2. Isi panjang: item memakai `min-width: 0` dan teks memakai `overflow-wrap: anywhere`.
-3. Luber: input dan item kartu diberi `min-width: 0`, sedangkan galeri memakai `minmax(16rem, 1fr)`.
+```css
+.page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+}
+```
 
-### F. Pemeriksaan
+**B.2 Navbar dan isi**
 
-- [x] Kerangka halaman memakai Grid.
-- [x] Navbar memakai Flexbox.
-- [x] Jarak utama memakai `gap`.
-- [x] Lebar kolom menggunakan `fr` / `minmax()`.
-- [x] Galeri adaptif tanpa media query.
-- [x] Tidak menggunakan `float`.
-- [x] Tidak menggunakan `!important`.
-- [x] Tema gelap Pertemuan 4 tetap dipakai.
+Navbar memakai Flexbox:
 
-**Potongan kode:** `grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));`
+```css
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+```
 
-**Dipakai pada:** galeri daftar film.
+Area isi memakai Grid:
+
+```css
+.isi {
+  display: grid;
+  grid-template-columns: 16rem 1fr;
+  gap: var(--space-6);
+}
+```
+
+Tidak ada `float` pada `layout.css`.
+
+### C — komponen.css
+
+**C.1 Galeri adaptif**
+
+Class `.galeri` berada pada container daftar film. CSS-nya:
+
+```css
+.galeri {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-4);
+}
+```
+
+Galeri tidak memakai media query untuk mengubah jumlah kolom.
+
+**C.2 Isi kartu**
+
+Struktur kartu sekarang:
+
+```text
+.kartu
+├── .kartu__isi
+│   └── figure
+│       ├── img
+│       └── .kartu__judul
+└── .kartu__kaki
+    ├── Tahun Rilis
+    └── Rating
+```
+
+Class `.kartu__kaki` memakai Flexbox:
+
+```css
+.kartu__kaki {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  min-width: 0;
+}
+```
+
+### D — Penempatan
+
+D.1 menggunakan `grid-column: span 2` pada dua section yang sudah ada:
+
+```css
+#list-film {
+  grid-column: span 2;
+}
+
+#tambah-film {
+  grid-column: span 2;
+}
+```
+
+D.2 area bernama tidak digunakan karena dua blok utama cukup ditempatkan dengan `span`.
+
+D.3 class/ID yang dipakai berasal dari struktur halaman yang sudah ada; tidak dibuat class dekoratif tambahan hanya untuk penempatan.
+
+### E — Tiga kasus sulit
+
+**E.1 Tinggi kartu tidak seragam**
+
+Pada galeri:
+
+```css
+.galeri .kartu {
+  display: grid;
+  align-content: start;
+  min-height: 14rem;
+}
+```
+
+**E.2 Isi panjang mendorong kolom**
+
+Class yang dipakai sesuai kebutuhan worksheet:
+
+```css
+.kartu__isi {
+  min-width: 0;
+}
+
+.kartu__judul {
+  overflow-wrap: anywhere;
+}
+```
+
+**E.3 Item meluber keluar kotak**
+
+Item utama menggunakan `min-width: 0`, input juga menggunakan `min-width: 0`, dan teks panjang menggunakan `overflow-wrap: anywhere`. Galeri menggunakan `minmax(16rem, 1fr)` agar kartu menyesuaikan ruang yang tersedia.
+
+### F — Pemeriksaan
+
+F.1 memeriksa enam hal sesuai worksheet:
+- Kerangka halaman menggunakan Grid tiga baris.
+- Jarak layout menggunakan `gap`.
+- Lebar kolom memakai `rem`, `fr`, atau `minmax()`.
+- Galeri berubah jumlah kolom tanpa media query.
+- Tidak ada overflow horizontal pada viewport 360 px dan 1.280 px.
+- Pengalih tema gelap dari Pertemuan 4 tetap berfungsi.
+
+Status implementasi kode saat ini:
+- [x] Wrapper `.page` dan Grid `auto 1fr auto`
+- [x] Navbar Flexbox dengan `gap`
+- [x] Area isi Grid dengan `16rem 1fr`
+- [x] Galeri Grid `auto-fit` dan `minmax()`
+- [x] `.kartu__kaki` Flexbox
+- [x] Penempatan `span 2`
+- [x] Perbaikan `min-width: 0` dan `overflow-wrap: anywhere`
+- [x] Tidak memakai `float` atau `!important`
+- [ ] Uji visual 360 px
+- [ ] Uji visual 1.280 px
+
+**F.2 Potongan kode untuk diingat**
+
+`grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));`
+
+Dipakai pada `.galeri` di `worksheet-p5/css/komponen.css`.
+
+### F.3 Penilaian mandiri
+
+| Bagian | Bobot |
+|---|---:|
+| Kerangka halaman: baris dan kolom | 30 |
+| Flexbox: navbar dan isi kartu | 25 |
+| Grid: galeri adaptif dan penempatan | 30 |
+| Kerapian: nol luberan, nol `!important` | 15 |
+| **TOTAL** | **100** |
+
+Nilai akhir diisi setelah pemeriksaan visual pada 360 px dan 1.280 px.
 
 ### F.4 Tiket keluar
 
 | Pertanyaan | Jawaban |
 |---|---|
-| Bagian halaman mana yang memakai flex, dan mengapa flex yang cocok? | Navbar, isi kartu, dan form memakai Flexbox karena elemen di dalamnya terutama disusun dalam satu arah. |
-| Bagian halaman mana yang memakai grid, dan mengapa grid yang cocok? | Kerangka halaman, area isi, dan galeri memakai Grid karena perlu pengaturan baris dan kolom. |
-| Satu kasus meluber yang ditemukan dan perbaikannya | Isi panjang dapat mendorong item melebar; diperbaiki dengan `min-width: 0` dan `overflow-wrap: anywhere`. |
+| Bagian halaman mana yang memakai flex, dan mengapa flex yang cocok? | Navbar, bagian bawah kartu, dan form memakai Flexbox karena elemen anak terutama disusun dalam satu arah. |
+| Bagian halaman mana yang memakai grid, dan mengapa grid yang cocok? | Kerangka halaman, area isi, dan galeri memakai Grid karena membutuhkan pengaturan baris dan kolom. |
+| Satu kasus meluber yang ditemui dan perbaikannya | Isi panjang dapat mendorong item melebar; diperbaiki dengan `min-width: 0` dan `overflow-wrap: anywhere`. |
 
 ### F.5 Catatan untuk pengampu
 
-**Bagian yang paling sulit:** menyesuaikan Grid dan Flexbox tanpa mengubah isi dan design token dari Pertemuan 4.
+**Bagian yang paling sulit:** menyesuaikan Grid dan Flexbox dengan struktur halaman Pertemuan 4 tanpa mengubah konten dan design token.
 
-**Bagian yang saya ingin dibahas di kelas:** perbedaan penggunaan Grid untuk kerangka dua arah dan Flexbox untuk komponen satu arah.
+**Bagian yang ingin dibahas di kelas:** perbedaan penggunaan Grid untuk layout dua arah dan Flexbox untuk susunan satu arah.

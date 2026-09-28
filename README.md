@@ -53,3 +53,73 @@ Seluruh pasangan yang diuji memenuhi ambang kontras yang ditetapkan pada workshe
 Kriteria selesai saya: mengubah `--blue-700` di satu baris harus mengubah warna tombol, tautan, judul, garis fokus, dan warna utama pada tema terang. Tema gelap memiliki override semantik di `tema.css` agar kontras tetap memenuhi ambang.
 
 Bantuan AI digunakan untuk menyesuaikan struktur CSS dan HTML dengan kriteria Worksheet Pertemuan 4, terutama design token, flexbox, form validation state, pengujian kontras, dan tema gelap. Rancangan konten halaman dan pilihan tampilan tetap disusun sendiri.
+
+
+# PABW — Worksheet Pertemuan 5
+
+## Layout Modern: Flexbox dan Grid
+
+Implementasi P5 menggunakan kembali konten, warna, dan design token dari Pertemuan 4. Perubahan utama berada pada mekanisme layout.
+
+### A. Kerangka halaman
+
+| Bagian | Pilihan |
+|---|---|
+| Baris halaman | `auto 1fr auto` |
+| Kolom area isi | `1fr 1fr` |
+| Sumbu navbar | horizontal |
+| Navbar | Flex |
+| Area isi | Grid |
+| Galeri kartu | Grid |
+| Isi kartu | Flex |
+
+### B. Kerangka dan navbar
+
+- Pembungkus terluar: `.page`
+- Kerangka halaman: CSS Grid dengan tiga baris `auto 1fr auto`
+- Tinggi minimum: `100dvh`
+- Navbar: Flexbox dengan `gap`
+- Area isi: Grid dua kolom menggunakan `minmax(0, 1fr)`
+
+### C. Kartu dan galeri
+
+Galeri menggunakan `repeat(auto-fit, minmax(16rem, 1fr))`, sehingga jumlah kolom dapat berubah mengikuti ruang yang tersedia tanpa media query. Isi kartu menggunakan Flexbox.
+
+### D. Penempatan
+
+Bagian **List Film** memakai span pada dua kolom dengan `grid-column: 1 / -1`. Bagian **Tambah Film** ditempatkan pada kolom kedua.
+
+### E. Tiga kasus sulit
+
+1. Tinggi kartu: kartu memakai `min-height: 14rem`.
+2. Isi panjang: item memakai `min-width: 0` dan teks memakai `overflow-wrap: anywhere`.
+3. Luber: input dan item kartu diberi `min-width: 0`, sedangkan galeri memakai `minmax(16rem, 1fr)`.
+
+### F. Pemeriksaan
+
+- [x] Kerangka halaman memakai Grid.
+- [x] Navbar memakai Flexbox.
+- [x] Jarak utama memakai `gap`.
+- [x] Lebar kolom menggunakan `fr` / `minmax()`.
+- [x] Galeri adaptif tanpa media query.
+- [x] Tidak menggunakan `float`.
+- [x] Tidak menggunakan `!important`.
+- [x] Tema gelap Pertemuan 4 tetap dipakai.
+
+**Potongan kode:** `grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));`
+
+**Dipakai pada:** galeri daftar film.
+
+### F.4 Tiket keluar
+
+| Pertanyaan | Jawaban |
+|---|---|
+| Bagian halaman mana yang memakai flex, dan mengapa flex yang cocok? | Navbar, isi kartu, dan form memakai Flexbox karena elemen di dalamnya terutama disusun dalam satu arah. |
+| Bagian halaman mana yang memakai grid, dan mengapa grid yang cocok? | Kerangka halaman, area isi, dan galeri memakai Grid karena perlu pengaturan baris dan kolom. |
+| Satu kasus meluber yang ditemukan dan perbaikannya | Isi panjang dapat mendorong item melebar; diperbaiki dengan `min-width: 0` dan `overflow-wrap: anywhere`. |
+
+### F.5 Catatan untuk pengampu
+
+**Bagian yang paling sulit:** menyesuaikan Grid dan Flexbox tanpa mengubah isi dan design token dari Pertemuan 4.
+
+**Bagian yang saya ingin dibahas di kelas:** perbedaan penggunaan Grid untuk kerangka dua arah dan Flexbox untuk komponen satu arah.

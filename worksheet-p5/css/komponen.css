@@ -21,12 +21,21 @@ h2 {
   flex-direction: column;
   gap: var(--space-3);
   min-width: 0;
-  min-height: 14rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-1);
   padding: var(--card-pad);
+}
+
+.kartu__isi {
+  min-width: 0;
+}
+
+.galeri .kartu {
+  display: grid;
+  align-content: start;
+  min-height: 14rem;
 }
 
 .kartu figure {
@@ -42,8 +51,21 @@ h2 {
   border-radius: var(--radius-md);
 }
 
-.kartu figcaption,
-.kartu p {
+.kartu__judul {
+  overflow-wrap: anywhere;
+}
+
+.kartu__kaki {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.kartu__kaki p {
+  max-width: none;
   overflow-wrap: anywhere;
 }
 

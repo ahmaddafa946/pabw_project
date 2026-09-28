@@ -244,8 +244,8 @@ Status implementasi kode saat ini:
 - [x] Penempatan `span 2`
 - [x] Perbaikan `min-width: 0` dan `overflow-wrap: anywhere`
 - [x] Tidak memakai `float` atau `!important`
-- [ ] Uji visual 360 px
-- [ ] Uji visual 1.280 px
+- [x] Uji visual 360 px
+- [x] Uji visual 1.280 px
 
 **F.2 Potongan kode untuk diingat**
 
@@ -277,4 +277,4 @@ Nilai akhir diisi setelah pemeriksaan visual pada 360 px dan 1.280 px.
 
 **Bagian yang paling sulit:** menyesuaikan Grid dan Flexbox dengan struktur halaman Pertemuan 4 tanpa mengubah konten dan design token.
 
-**Bagian yang ingin dibahas di kelas:** perbedaan penggunaan Grid untuk layout dua arah dan Flexbox untuk susunan satu arah.
+**Bagian yang ingin dibahas di kelas:** -

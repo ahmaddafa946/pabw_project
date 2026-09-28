@@ -11,26 +11,25 @@ header {
   flex-wrap: wrap;
 }
 
-.navbar {
-  display: flex;
-  align-items: center;
-}
-
-nav ul {
+.navbar,
+.navbar ul {
   display: flex;
   align-items: center;
   gap: var(--space-4);
+}
+
+.navbar ul {
   list-style: none;
   padding: 0;
   flex-wrap: wrap;
 }
 
-nav a {
+.navbar a {
   color: var(--color-primary);
   text-decoration: none;
 }
 
-nav a:hover {
+.navbar a:hover {
   text-decoration: underline;
 }
 
@@ -40,24 +39,24 @@ nav a:hover {
   min-height: 100dvh;
 }
 
-main {
+.isi {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
   gap: var(--space-6);
   padding-block: var(--space-6);
   min-width: 0;
 }
 
-main > section {
+.isi > section {
   min-width: 0;
 }
 
 #list-film {
-  grid-column: 1 / -1;
+  grid-column: span 2;
 }
 
 #tambah-film {
-  grid-column: 2;
+  grid-column: span 2;
 }
 
 footer {

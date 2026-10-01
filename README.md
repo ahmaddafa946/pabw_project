@@ -276,3 +276,130 @@ Nilai akhir diisi setelah pemeriksaan visual pada 360 px dan 1.280 px.
 ### F.5 Catatan untuk pengampu
 
 **Bagian yang paling sulit:** menyesuaikan Grid dan Flexbox dengan struktur halaman Pertemuan 4 tanpa mengubah konten dan design token.
+
+# PABW — Worksheet Pertemuan 6
+
+## Responsif Mobile-First
+
+Pertemuan 6 melanjutkan halaman profil dari Pertemuan 5 dengan fokus pada desain responsif menggunakan pendekatan mobile-first. Struktur HTML, konten, design token, dan tema tetap dipertahankan.
+
+### A — Persiapan responsif
+
+Di `worksheet-p6/profil.html` sudah digunakan viewport meta agar ukuran halaman mengikuti lebar perangkat:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+Class responsif diterapkan pada elemen layout yang sudah ada:
+
+```html
+<main class="isi content">
+```
+
+dan container galeri:
+
+```html
+<div class="galeri grid">
+```
+
+Class lama `.isi` dan `.galeri` tetap dipertahankan agar CSS dari Pertemuan 5 tetap berjalan.
+
+### B — Mobile-first
+
+File `worksheet-p6/css/responsif.css` menggunakan aturan dasar tanpa media query untuk ukuran layar kecil:
+
+```css
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+```
+
+Dengan pendekatan ini, layout dimulai dari satu kolom pada layar mobile.
+
+### C — Breakpoint
+
+Breakpoint ditambahkan untuk memperluas layout pada tablet dan desktop:
+
+```css
+@media (min-width: 48rem) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 60rem) {
+  .content {
+    grid-template-columns: 16rem 1fr;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+```
+
+Pada ukuran minimal 48rem, grid berubah menjadi dua kolom. Pada minimal 60rem, grid berubah menjadi tiga kolom dan container `.content` memakai dua kolom dengan ukuran `16rem 1fr`.
+
+### D — Gambar, tabel, dan teks
+
+Untuk menjaga isi tetap berada di dalam viewport:
+
+```css
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+```
+
+Teks panjang juga ditangani menggunakan `min-width: 0` dan `overflow-wrap: anywhere` pada bagian yang membutuhkan.
+
+Pada halaman P6 saat ini tidak terdapat tabel, sehingga class `.table-wrap` belum dipasang pada elemen HTML.
+
+### E — Pemeriksaan responsif
+
+Ukuran viewport yang menjadi acuan pemeriksaan:
+- 360 px — layout mobile satu kolom.
+- 768 px — layout tablet dengan grid dua kolom.
+- 1.280 px — layout desktop dengan grid tiga kolom.
+
+Hal yang diperiksa:
+- Tidak ada horizontal scroll pada halaman.
+- Gambar tidak keluar dari container.
+- Teks panjang tidak mendorong layout melebar.
+- Grid berubah jumlah kolom sesuai breakpoint.
+- Tema gelap dari Pertemuan 4 tetap dapat digunakan.
+
+### Status implementasi P6
+
+- [x] Viewport meta tersedia.
+- [x] Class `.content` ditambahkan ke `main` tanpa menghapus class `.isi`.
+- [x] Class `.grid` ditambahkan ke galeri tanpa menghapus class `.galeri`.
+- [x] Mobile-first satu kolom.
+- [x] Breakpoint 48rem untuk dua kolom.
+- [x] Breakpoint 60rem untuk tiga kolom.
+- [x] Gambar responsif.
+- [x] Aturan wrapper tabel tersedia pada `responsif.css`.
+- [x] Ukuran paragraf dan line-height ditetapkan.
+- [x] Penanganan teks panjang menggunakan `min-width: 0` dan `overflow-wrap: anywhere`.
+
+### Catatan untuk pengampu
+
+**Bagian yang paling penting:** responsivitas ditambahkan tanpa menghapus struktur dan class dari Pertemuan 5. Pendekatan mobile-first dimulai dari satu kolom, kemudian diperluas melalui breakpoint `48rem` dan `60rem`.

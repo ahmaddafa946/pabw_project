@@ -276,5 +276,3 @@ Nilai akhir diisi setelah pemeriksaan visual pada 360 px dan 1.280 px.
 ### F.5 Catatan untuk pengampu
 
 **Bagian yang paling sulit:** menyesuaikan Grid dan Flexbox dengan struktur halaman Pertemuan 4 tanpa mengubah konten dan design token.
-
-**Bagian yang ingin dibahas di kelas:** -

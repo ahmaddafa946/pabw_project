@@ -69,7 +69,6 @@ console.log(formatKeahlian(profil.keahlian));
 console.log(`Lokasi profil: ${lokasiProfil}`);
 console.log(`Bio: ${bioProfil}`);
 
-// Pemeriksaan data utama sesuai Lembar D.
 console.table(profil);
 console.table(profil.keahlian);
 console.table(daftarProyek);
@@ -90,7 +89,6 @@ console.log(proyekKosManage);
 const judulProyek = daftarProyek.map((proyek) => proyek.judul);
 console.log(judulProyek);
 
-// sort dijalankan pada salinan agar data asli tetap utuh.
 const proyekTerbaru = [...daftarProyek].sort(
   (a, b) => b.tahun - a.tahun,
 );

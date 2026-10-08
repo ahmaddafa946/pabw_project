@@ -1,9 +1,9 @@
 const profil = {
   nama: "Ahmad Dafa Ardevanda",
-  peran: "Mahasiswa Teknik Informatika",
+  peran: "Mahasiswa Informatika yang belajar front-end",
   nim: "25523179",
   tahun: 2026,
-  alamat: undefined,
+  alamat: "Sleman, Sardonoharjo", 
   keahlian: ["HTML", "CSS", "JavaScript", "Responsive Design"],
 };
 
@@ -55,12 +55,10 @@ const daftarFilm = [
   },
 ];
 
-// Fungsi murni 1: hanya bergantung pada argumen dan mengembalikan kalimat.
 export function buatPerkenalan({ nama, peran }) {
   return `${nama} — ${peran}`;
 }
 
-// Fungsi murni 2: mengubah array keahlian menjadi satu baris teks.
 export const formatKeahlian = (daftar) => daftar.join(" · ");
 
 const lokasiProfil = profil.alamat?.kota ?? "Belum diisi";

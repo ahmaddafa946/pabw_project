@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <title>Daftar Film</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/komponen.css">
+  <link rel="stylesheet" href="./css/tema.css">
+  <link rel="stylesheet" href="./css/responsif.css">
+</head>
+<body>
+  <!-- B.1: .page menjadi pembungkus header, main, dan footer. -->
+  <div class="page">
+    <header>
+      <input type="checkbox" id="tema" class="pengalih-tema">
+      <label for="tema" class="tombol-tema">Tema gelap</label>
+
+      <!-- A.2/B.2: satu baris header memakai Flexbox. -->
+      <div class="header-baris">
+        <h1>Playlist Film Favorit</h1>
+        <nav class="navbar">
+          <ul>
+            <li><a href="#list-film">List Film</a></li>
+            <li><a href="#tambah-film">Tambah Film</a></li>
+            <li><a href="#footer">Tentang Saya</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- A.1/B.2: area isi memakai Grid dengan dua kolom. -->
+    <main class="isi content">
+      <!-- D.1: blok utama menempati dua kolom dengan span. -->
+      <section id="list-film">
+        <h2>List Film</h2>
+
+        <!-- C.1: galeri adaptif memakai Grid auto-fit. -->
+        <div class="galeri grid">
+          <div class="kartu">
+            <div class="kartu__isi">
+              <figure>
+                <img src="./img/avanger.jpg" alt="Lima tahun setelah Snap, Avengers menemukan cara melakukan perjalanan waktu untuk mengambil Infinity Stones dari masa lalu. Mereka berhasil mengalahkan Thanos, tetapi Tony Stark mengorbankan dirinya dengan menggunakan Infinity Stones untuk menyelamatkan alam semesta." width="640" height="980" loading="lazy">
+                <figcaption class="kartu__judul">Avanger Endgame</figcaption>
+              </figure>
+            </div>
+            <!-- C.2: informasi bawah kartu disusun dengan Flexbox. -->
+            <div class="kartu__kaki">
+              <p>Tahun Rilis: 2019</p>
+              <p>Rating: 8.4</p>
+            </div>
+          </div>
+
+          <div class="kartu">
+            <div class="kartu__isi">
+              <figure>
+                <img src="./img/ironman3.jpg" alt="Tony Stark mengalami trauma setelah Avengers 1. Ia menjadi terobsesi membuat armor, tetapi akhirnya sadar bahwa Iron Man bukan hanya armor, melainkan dirinya sendiri." width="640" height="980" loading="lazy">
+                <figcaption class="kartu__judul">IronMan 3</figcaption>
+              </figure>
+            </div>
+            <div class="kartu__kaki">
+              <p>Tahun Rilis: 2013</p>
+              <p>Rating: 7.1</p>
+            </div>
+          </div>
+
+          <div class="kartu">
+            <div class="kartu__isi">
+              <figure>
+                <img src="./img/infinity.jpg" alt="Thanos mengumpulkan 6 Infinity Stones untuk menghapus setengah kehidupan di alam semesta. Avengers gagal menghentikannya dan Thanos berhasil melakukan Snap, membuat setengah makhluk hidup menghilang." width="640" height="980" loading="lazy">
+                <figcaption class="kartu__judul">Avanger Infinity War</figcaption>
+              </figure>
+            </div>
+            <div class="kartu__kaki">
+              <p>Tahun Rilis: 2018</p>
+              <p>Rating: 8.2</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- D.1: blok utama kedua juga memakai span dua kolom. -->
+      <section id="tambah-film">
+        <h2>Tambah Film</h2>
+        <div class="katalog">
+          <div class="kartu">
+            <!-- E.2: wrapper isi mengizinkan item menyusut. -->
+            <div class="kartu__isi">
+              <form action="/simpan" method="post">
+                <div class="form-kolom">
+                  <label for="judul-kolom">Judul</label>
+                  <input type="text" id="judul-kolom" name="judul-kolom" required>
+                  <span class="pesan-galat">Judul film wajib diisi.</span>
+                </div>
+
+                <div class="form-kolom">
+                  <label for="tahun-kolom">Tahun Rilis</label>
+                  <input type="number" id="tahun-kolom" name="tahun-kolom" min="1888" max="2026" required>
+                  <span class="pesan-galat">Masukkan tahun rilis yang valid.</span>
+                </div>
+
+                <div class="form-kolom">
+                  <label for="rating-kolom">Rating</label>
+                  <input type="number" id="rating-kolom" name="rating-kolom" min="0" max="10" step="0.1" required>
+                  <span class="pesan-galat">Rating harus berada antara 0 sampai 10.</span>
+                </div>
+
+                <button type="submit">Simpan</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <h3>Tentang Saya</h3>
+      <p>Nama: Ahmad Dafa Ardevanda</p>
+      <p>NIM: 25523179</p>
+      <p>Tahun: 2026</p>
+    </footer>
+  </div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+
+</html>

@@ -403,3 +403,56 @@ Hal yang diperiksa:
 ### Catatan untuk pengampu
 
 **Bagian yang paling penting:** responsivitas ditambahkan tanpa menghapus struktur dan class dari Pertemuan 5. Pendekatan mobile-first dimulai dari satu kolom, kemudian diperluas melalui breakpoint `48rem` dan `60rem`.
+
+
+# PABW — Worksheet Pertemuan 8
+
+## JavaScript Modern ES6+, Struktur Data, dan Array Methods
+
+Folder `worksheet-p8/` melanjutkan halaman dari P6. Pada P8, isi halaman yang sebelumnya ditulis langsung di HTML dipindahkan menjadi data JavaScript pada `js/app.js`.
+
+### Implementasi P8
+
+- `profil` menyimpan identitas sebagai object: nama, peran, NIM, tahun, dan alamat opsional.
+- `profil.keahlian` menyimpan daftar kemampuan sebagai array.
+- `daftarProyek` menyimpan proyek sebagai array of object dengan judul, tahun, status selesai, dan deskripsi.
+- `jumlahProyek` menyimpan nilai angka yang berasal dari panjang array proyek.
+- `daftarFilm` juga disimpan sebagai array of object agar daftar film tidak lagi ditulis satu per satu di HTML.
+- Template literal dipakai untuk menyusun judul dan informasi profil.
+- `??` dipakai untuk nilai bawaan ketika data `null` atau `undefined`.
+- `?.` dipakai saat mengakses `profil.alamat` yang belum diisi agar tidak melempar galat.
+- Perbandingan pada filter memakai `===`.
+
+### Dua fungsi murni
+
+```js
+function buatPerkenalan({ nama, peran }) {
+  return `${nama} — ${peran}`;
+}
+
+const formatKeahlian = (daftar) => daftar.join(" · ");
+```
+
+Kedua fungsi hanya bergantung pada argumennya dan tidak mengubah data di luar fungsi.
+
+### Array methods yang dipakai
+
+- `map()` membuat array baru berisi judul proyek.
+- `filter()` mengambil proyek yang selesai dan film dengan rating minimal 8.
+- `find()` mengambil proyek `KosManage Web` dan film `Avengers Endgame`.
+- `[...]` dipakai sebelum `sort()` agar pengurutan tidak mengubah `daftarProyek` asli.
+- `console.table()` dipakai untuk memeriksa isi object dan array di Console.
+
+### Struktur halaman
+
+`profil.html` sekarang hanya memuat struktur dan elemen target. Nilai identitas, keahlian, proyek, film, dan footer diisi oleh `app.js` setelah halaman dimuat melalui:
+
+```html
+<script type="module" src="./js/app.js"></script>
+```
+
+### Deklarasi AI
+
+AI membantu implementasi P8, terutama untuk menyusun pemindahan data dari HTML ke JavaScript, pembuatan dua fungsi murni, penggunaan `map`, `filter`, `find`, `??`, `?.`, spread sebelum `sort`, serta pengecekan sintaks dan struktur kode. Topik halaman, identitas pribadi, proyek yang dicantumkan, serta aset film berasal dari pekerjaan saya pada pertemuan sebelumnya. Saya tetap bertanggung jawab memahami dan menjelaskan kode yang digunakan.
+
+Catatan: bagian E.5 pada worksheet harus diisi berdasarkan galat Console yang benar-benar muncul saat pengerjaan, sehingga tidak dibuat-buat di README.

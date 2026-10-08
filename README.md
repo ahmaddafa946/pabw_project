@@ -454,5 +454,3 @@ Kedua fungsi hanya bergantung pada argumennya dan tidak mengubah data di luar fu
 ### Deklarasi AI
 
 AI membantu implementasi P8, terutama untuk menyusun pemindahan data dari HTML ke JavaScript, pembuatan dua fungsi murni, penggunaan `map`, `filter`, `find`, `??`, `?.`, spread sebelum `sort`, serta pengecekan sintaks dan struktur kode. Topik halaman, identitas pribadi, proyek yang dicantumkan, serta aset film berasal dari pekerjaan saya pada pertemuan sebelumnya. Saya tetap bertanggung jawab memahami dan menjelaskan kode yang digunakan.
-
-Catatan: bagian E.5 pada worksheet harus diisi berdasarkan galat Console yang benar-benar muncul saat pengerjaan, sehingga tidak dibuat-buat di README.

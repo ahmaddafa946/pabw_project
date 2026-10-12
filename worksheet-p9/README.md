@@ -1,6 +1,6 @@
 # PABW — Pertemuan 9
 
-## DOM, Event, dan Interactivity — Bagian A
+## DOM, Event, dan Interaktivitas
 
 Folder ini dibuat dari hasil Pertemuan 8 sebagai dasar latihan DOM pada Pertemuan 9.
 

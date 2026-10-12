@@ -48,9 +48,9 @@
       <section id="list-proyek">
         <h2>Proyek Saya</h2>
         <div class="baris-filter" id="filter" aria-label="Filter proyek">
-          <button type="button" data-filter="semua">Semua</button>
-          <button type="button" data-filter="selesai">Selesai</button>
-          <button type="button" data-filter="proses">Dalam Proses</button>
+          <button type="button" data-kategori="semua" aria-pressed="true">Semua</button>
+          <button type="button" data-kategori="selesai" aria-pressed="false">Selesai</button>
+          <button type="button" data-kategori="proses" aria-pressed="false">Dalam Proses</button>
         </div>
         <p id="pesan-kosong" hidden>Tidak ada proyek yang sesuai dengan filter.</p>
         <div class="galeri grid" id="daftar-proyek"></div>
@@ -66,26 +66,27 @@
         <div class="katalog">
           <div class="kartu">
             <div class="kartu__isi">
-              <form id="form-film" action="/simpan" method="post">
+              <form id="form-film" action="/simpan" method="post" novalidate>
                 <div class="form-kolom">
                   <label for="judul-kolom">Judul</label>
-                  <input type="text" id="judul-kolom" name="judul-kolom" required>
-                  <span class="pesan-galat">Judul film wajib diisi.</span>
+                  <input type="text" id="judul-kolom" name="judul-kolom" required aria-invalid="false" aria-describedby="galat-judul">
+                  <span class="pesan-galat" id="galat-judul">Judul film wajib diisi.</span>
                 </div>
 
                 <div class="form-kolom">
                   <label for="tahun-kolom">Tahun Rilis</label>
-                  <input type="number" id="tahun-kolom" name="tahun-kolom" min="1888" max="2026" required>
-                  <span class="pesan-galat">Masukkan tahun rilis yang valid.</span>
+                  <input type="number" id="tahun-kolom" name="tahun-kolom" min="1888" max="2026" step="1" required aria-invalid="false" aria-describedby="galat-tahun">
+                  <span class="pesan-galat" id="galat-tahun">Masukkan tahun rilis antara 1888 sampai 2026.</span>
                 </div>
 
                 <div class="form-kolom">
                   <label for="rating-kolom">Rating</label>
-                  <input type="number" id="rating-kolom" name="rating-kolom" min="0" max="10" step="0.1" required>
-                  <span class="pesan-galat">Rating harus berada antara 0 sampai 10.</span>
+                  <input type="number" id="rating-kolom" name="rating-kolom" min="0" max="10" step="0.1" required aria-invalid="false" aria-describedby="galat-rating">
+                  <span class="pesan-galat" id="galat-rating">Rating harus berada antara 0 sampai 10.</span>
                 </div>
 
                 <button type="submit">Simpan</button>
+                <p id="pesan-form" class="pesan-form" role="status" aria-live="polite" hidden></p>
               </form>
             </div>
           </div>

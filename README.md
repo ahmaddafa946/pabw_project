@@ -109,25 +109,30 @@ Di `profil.html`, class `.page` membungkus `header`, `main`, dan `footer`.
 
 **B.2 Navbar dan isi**
 
-Navbar memakai Flexbox:
-
-```css
-.navbar {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-```
-
-Area isi memakai Grid:
+Navbar menggunakan Flexbox. Area isi menggunakan named grid areas agar form berada di sidebar pada layar lebar, sedangkan daftar film mengisi ruang utama.
 
 ```css
 .isi {
   display: grid;
-  grid-template-columns: 16rem 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "film"
+    "form";
   gap: var(--space-6);
 }
+
+@media (min-width: 48rem) {
+  .isi {
+    grid-template-columns: 16rem minmax(0, 1fr);
+    grid-template-areas: "form film";
+  }
+}
+
+#list-film { grid-area: film; }
+#tambah-film { grid-area: form; }
 ```
+
+Pada layar kecil, isi bertumpuk menjadi satu kolom. Pada layar lebar, form menjadi sidebar selebar `16rem` dan galeri menggunakan ruang yang tersisa. Galeri tetap adaptif tanpa media query pada aturan `.galeri`.
 
 Tidak ada `float` pada `layout.css`.
 
@@ -175,23 +180,26 @@ Class `.kartu__kaki` memakai Flexbox:
 }
 ```
 
-### D — Penempatan
+### D — Penempatan dengan named grid areas
 
-D.1 menggunakan `grid-column: span 2` pada dua section yang sudah ada:
+Dua bagian utama ditempatkan dengan nama area, bukan `grid-column: span 2`. Ini membuat tujuan setiap kolom jelas dan menghindari kedua bagian mengambil lebar penuh pada desktop.
 
 ```css
-#list-film {
-  grid-column: span 2;
+.isi {
+  grid-template-areas:
+    "film"
+    "form";
 }
 
-#tambah-film {
-  grid-column: span 2;
+@media (min-width: 48rem) {
+  .isi {
+    grid-template-areas: "form film";
+  }
 }
+
+#list-film { grid-area: film; }
+#tambah-film { grid-area: form; }
 ```
-
-D.2 area bernama tidak digunakan karena dua blok utama cukup ditempatkan dengan `span`.
-
-D.3 class/ID yang dipakai berasal dari struktur halaman yang sudah ada; tidak dibuat class dekoratif tambahan hanya untuk penempatan.
 
 ### E — Tiga kasus sulit
 
@@ -238,10 +246,10 @@ F.1 memeriksa enam hal sesuai worksheet:
 Status implementasi kode saat ini:
 - [x] Wrapper `.page` dan Grid `auto 1fr auto`
 - [x] Navbar Flexbox dengan `gap`
-- [x] Area isi Grid dengan `16rem 1fr`
+- [x] Area isi Grid dengan named areas; form menjadi sidebar pada layar lebar
 - [x] Galeri Grid `auto-fit` dan `minmax()`
 - [x] `.kartu__kaki` Flexbox
-- [x] Penempatan `span 2`
+- [x] Penempatan memakai `grid-template-areas` dan `grid-area`
 - [x] Perbaikan `min-width: 0` dan `overflow-wrap: anywhere`
 - [x] Tidak memakai `float` atau `!important`
 - [x] Uji visual 360 px
@@ -307,47 +315,45 @@ Class lama `.isi` dan `.galeri` tetap dipertahankan agar CSS dari Pertemuan 5 te
 
 ### B — Mobile-first
 
-File `worksheet-p6/css/responsif.css` menggunakan aturan dasar tanpa media query untuk ukuran layar kecil:
+File `worksheet-p6/css/responsif.css` memulai area isi dengan satu kolom. Karena class `.isi` dan `.content` tetap dipakai, named areas menentukan posisi daftar film dan form tanpa menghapus struktur P5.
 
 ```css
 .content {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "film"
+    "form";
   gap: var(--space-4);
 }
 ```
 
-Dengan pendekatan ini, layout dimulai dari satu kolom pada layar mobile.
+Pada layar kecil, daftar film tampil lebih dulu dan form di bawahnya.
 
 ### C — Breakpoint
 
-Breakpoint ditambahkan untuk memperluas layout pada tablet dan desktop:
+Breakpoint memperluas galeri pada tablet, lalu menempatkan form di sidebar pada desktop:
 
 ```css
 @media (min-width: 48rem) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 60rem) {
   .content {
-    grid-template-columns: 16rem 1fr;
+    grid-template-columns: 16rem minmax(0, 1fr);
+    grid-template-areas: "form film";
   }
 
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 ```
 
-Pada ukuran minimal 48rem, grid berubah menjadi dua kolom. Pada minimal 60rem, grid berubah menjadi tiga kolom dan container `.content` memakai dua kolom dengan ukuran `16rem 1fr`.
+Mulai 48rem, galeri dapat memakai dua kolom. Mulai 60rem, form menjadi sidebar selebar `16rem`, daftar film berada di kolom konten, dan galeri dapat memakai tiga kolom. Batas bawah `minmax(0, 1fr)` membantu item menyusut agar tidak memaksa halaman melebar.
 
 ### D — Gambar, tabel, dan teks
 
@@ -394,7 +400,7 @@ Hal yang diperiksa:
 - [x] Class `.grid` ditambahkan ke galeri tanpa menghapus class `.galeri`.
 - [x] Mobile-first satu kolom.
 - [x] Breakpoint 48rem untuk dua kolom.
-- [x] Breakpoint 60rem untuk tiga kolom.
+- [x] Breakpoint 60rem untuk sidebar form dan galeri tiga kolom.
 - [x] Gambar responsif.
 - [x] Aturan wrapper tabel tersedia pada `responsif.css`.
 - [x] Ukuran paragraf dan line-height ditetapkan.
@@ -408,6 +414,10 @@ Hal yang diperiksa:
 # PABW — Worksheet Pertemuan 8
 
 ## JavaScript Modern ES6+, Struktur Data, dan Array Methods
+
+### Tata letak lanjutan setelah P5
+
+Layout di `worksheet-p8/css/layout.css` dan `worksheet-p9/css/layout.css` menggunakan named grid areas. Di ponsel, profil, proyek, daftar film, dan form tersusun satu kolom. Di desktop, profil menjadi sidebar dan proyek berada di sampingnya, sementara daftar film dan form memakai lebar penuh pada baris berikutnya. `responsif.css` mengatur galeri menjadi satu, dua, atau tiga kolom; `minmax(0, 1fr)` dan `min-width: 0` membantu mencegah konten panjang memaksa halaman melebar.
 
 Folder `worksheet-p8/` melanjutkan halaman dari P6. Pada P8, isi halaman yang sebelumnya ditulis langsung di HTML dipindahkan menjadi data JavaScript pada `js/app.js`.
 

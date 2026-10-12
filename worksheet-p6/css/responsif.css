@@ -1,31 +1,29 @@
 .content {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "film"
+    "form";
   gap: var(--space-4);
+  min-width: 0;
 }
-
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
 }
-
-/* tablet: galeri dua kolom */
+/* Tablet: galeri dapat menampilkan dua kartu per baris. */
 @media (min-width: 48rem) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-
-/* desktop: sidebar bersanding dengan konten */
+/* Desktop: form menjadi sidebar dan daftar film mengisi konten utama. */
 @media (min-width: 60rem) {
-  .content { grid-template-columns: 16rem 1fr; }
-  .grid { grid-template-columns: repeat(3, 1fr); }
+  .content {
+    grid-template-columns: 16rem minmax(0, 1fr);
+    grid-template-areas: "form film";
+  }
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
-
-/* gambar tidak melebihi wadahnya */
 img { max-width: 100%; height: auto; }
-
-/* tabel lebar dapat digulir sendiri */
-.table-wrap { overflow-x: auto; }
-
-/* teks mengikuti ukuran huruf pengguna */
+.table-wrap { max-width: 100%; overflow-x: auto; }
 p { font-size: 1rem; line-height: 1.6; }

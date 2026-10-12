@@ -31,6 +31,15 @@ worksheet-p9/
     └── dom.js
 ```
 
+### Tata letak yang diteruskan dari P8
+
+CSS Grid pada `css/layout.css` memakai named areas untuk menjaga susunan konten setelah interaksi DOM ditambahkan.
+
+- Pada layar kecil, profil, proyek, daftar film, dan form ditumpuk satu kolom.
+- Pada layar desktop, profil berada di sidebar, proyek di sampingnya, lalu daftar film dan form masing-masing menempati lebar penuh.
+- Galeri mengikuti breakpoint pada `css/responsif.css` dan menggunakan kolom `minmax(0, 1fr)` agar isi tidak meluber.
+- Selector dan ID untuk DOM tetap dipertahankan; perubahan layout hanya mengatur posisi bagian halaman.
+
 ### Pemeriksaan di DevTools
 
 Buka halaman melalui Live Server, lalu jalankan di Console:

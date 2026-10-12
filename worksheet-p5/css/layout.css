@@ -2,7 +2,6 @@ header {
   padding-block: var(--space-4);
   border-bottom: 1px solid var(--color-border);
 }
-
 .header-baris {
   display: flex;
   align-items: center;
@@ -10,13 +9,11 @@ header {
   gap: var(--space-4);
   flex-wrap: wrap;
 }
-
 .navbar {
   display: flex;
   align-items: center;
   gap: var(--space-4);
 }
-
 .navbar ul {
   display: flex;
   align-items: center;
@@ -25,41 +22,39 @@ header {
   padding: 0;
   flex-wrap: wrap;
 }
+.navbar a { color: var(--color-primary); text-decoration: none; }
+.navbar a:hover { text-decoration: underline; }
 
-.navbar a {
-  color: var(--color-primary);
-  text-decoration: none;
-}
-
-.navbar a:hover {
-  text-decoration: underline;
-}
-
+/* Kerangka halaman: header, isi, dan footer. */
 .page {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100dvh;
 }
 
+/* Mobile-first: daftar film dan form disusun satu kolom. */
 .isi {
   display: grid;
-  grid-template-columns: 16rem 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "film"
+    "form";
   gap: var(--space-6);
   padding-block: var(--space-6);
   min-width: 0;
+  align-items: start;
 }
 
-.isi > section {
-  min-width: 0;
+/* Pada layar lebar, form menjadi sidebar dan galeri mengisi sisa ruang. */
+@media (min-width: 48rem) {
+  .isi {
+    grid-template-columns: 16rem minmax(0, 1fr);
+    grid-template-areas: "form film";
+  }
 }
-
-#list-film {
-  grid-column: span 2;
-}
-
-#tambah-film {
-  grid-column: span 2;
-}
+.isi > section { min-width: 0; }
+#list-film { grid-area: film; }
+#tambah-film { grid-area: form; }
 
 footer {
   padding-block: var(--space-4);

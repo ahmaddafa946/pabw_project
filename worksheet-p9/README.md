@@ -60,13 +60,13 @@ Setiap perintah seharusnya mengembalikan elemen HTML, bukan `null`.
 
 Jalankan `profil.html` menggunakan Live Server atau server lokal karena JavaScript dimuat sebagai module.
 
-### Bagian B — Render dari data
+### Bagian B — Render proyek dari data
 
-Daftar proyek dibentuk dari `daftarProyek` di `js/app.js`. Fungsi `buatKartu()` membuat setiap kartu menggunakan `createElement()` dan `textContent`, lalu `render()` mengosongkan wadah sebelum memasukkan kartu baru. `DocumentFragment` dipakai untuk merangkai kartu sebelum ditambahkan ke halaman.
+Daftar proyek dibentuk dari `daftarProyek` yang berasal dari `js/app.js` P8. Fungsi `buatKartuProyek()` menyusun elemen dengan `createElement()` dan `textContent`, lalu `renderProyek()` mengosongkan wadah terlebih dahulu sebelum memasukkan hasil dari data. `DocumentFragment` dipakai untuk merangkai kartu sebelum ditambahkan ke halaman.
 
-### Bagian C — Filter dan event delegation
+### Bagian C — Filter film dan event delegation
 
-Tombol filter menggunakan atribut `data-kategori`. Satu pendengar klik ditempatkan pada `#filter`, lalu tombol aktual ditemukan melalui `event.target.closest("button[data-kategori]")`. Tombol aktif ditandai menggunakan kelas `aktif` dan atribut `aria-pressed`. Ketika kategori tidak memiliki proyek, pesan `#pesan-kosong` ditampilkan.
+Filter diterapkan pada bagian List Film Favorit. Tombol menggunakan atribut `data-kategori` dengan pilihan Semua Film, Rating ≥ 8, Rating < 8, dan Tanpa Rating. Satu pendengar klik ditempatkan pada `#filter`, lalu tombol yang diklik dicari menggunakan `event.target.closest("button[data-kategori]")`. Fungsi `render()` selalu mengosongkan daftar film sebelum menggambar ulang dan menampilkan pesan saat hasil kosong. Tombol aktif ditandai menggunakan kelas `aktif` dan atribut `aria-pressed`.
 
 ### Bagian D — Validasi form
 
@@ -77,9 +77,9 @@ Form memakai `preventDefault()` agar halaman tidak dimuat ulang. Judul, tahun, d
 Uji di Chrome DevTools setelah menjalankan halaman lewat Live Server:
 
 1. Jalankan selector pada lembar A di Console dan pastikan setiap hasil bukan `null`.
-2. Klik filter Semua, Selesai, dan Dalam Proses. Jumlah kartu tidak boleh bertambah berlipat. Karena seluruh data proyek saat ini berstatus selesai, filter Dalam Proses menampilkan pesan kosong.
+2. Klik filter Semua Film, Rating ≥ 8, Rating < 8, dan Tanpa Rating. Jumlah kartu film tidak boleh bertambah berlipat. Filter Tanpa Rating menampilkan pesan kosong untuk data awal.
 3. Kirim form kosong. Halaman tidak dimuat ulang dan pesan galat tampil. Isi nilai yang benar sampai tombol aktif, lalu kirim lagi.
-4. Periksa panel Event Listeners pada `#filter`; handler klik untuk filter dipasang sekali pada induk.
+4. Periksa panel Event Listeners pada `#filter` di bagian List Film; handler klik dipasang sekali pada induk.
 5. Ambil tangkapan layar keadaan daftar proyek, panel Event Listeners, dan hasil filter. Tangkapan layar perlu disimpan setelah pengujian manual di peramban.
 
 ### Bahan tiket keluar
@@ -92,7 +92,7 @@ Uji di Chrome DevTools setelah menjalankan halaman lewat Live Server:
 
 ### Deklarasi penggunaan AI
 
-AI digunakan sebagai bantuan dalam pengembangan dan pemeriksaan implementasi DOM, render daftar proyek, event delegation, validasi form, dan dokumentasi. Data profil, identitas, proyek, film, serta struktur halaman melanjutkan pekerjaan pribadi dari pertemuan sebelumnya. Saya bertanggung jawab memeriksa, memahami, dan mampu menjelaskan kode yang disimpan. Hasil Console dan tangkapan layar perlu saya verifikasi sendiri melalui peramban sebelum penyerahan.
+AI digunakan sebagai bantuan dalam pengembangan dan pemeriksaan implementasi DOM, render daftar proyek dari array P8, event delegation untuk filter daftar film, validasi form, dan dokumentasi. Data profil, identitas, proyek, film, serta struktur halaman melanjutkan pekerjaan pribadi dari pertemuan sebelumnya. Saya bertanggung jawab memeriksa, memahami, dan mampu menjelaskan kode yang disimpan. Hasil Console dan tangkapan layar perlu saya verifikasi sendiri melalui peramban sebelum penyerahan.
 
 ### Pemeriksaan akhir
 

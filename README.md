@@ -464,3 +464,70 @@ Kedua fungsi hanya bergantung pada argumennya dan tidak mengubah data di luar fu
 ### Deklarasi AI
 
 AI membantu implementasi P8, terutama untuk menyusun pemindahan data dari HTML ke JavaScript, pembuatan dua fungsi murni, penggunaan `map`, `filter`, `find`, `??`, `?.`, spread sebelum `sort`, serta pengecekan sintaks dan struktur kode. Topik halaman, identitas pribadi, proyek yang dicantumkan, serta aset film berasal dari pekerjaan saya pada pertemuan sebelumnya. Saya tetap bertanggung jawab memahami dan menjelaskan kode yang digunakan.
+
+# PABW — Worksheet Pertemuan 9
+
+## DOM, Event, dan Interaktivitas
+
+Pertemuan 9 melanjutkan halaman profil dari P8 dengan memanfaatkan DOM untuk menampilkan data, menangani interaksi pengguna, memfilter daftar film, dan memvalidasi form. Dokumentasi pertemuan ini disimpan di **README utama repository**; implementasi kodenya berada di folder `worksheet-p9/`.
+
+### Struktur berkas P9
+
+- [`profil.html`](worksheet-p9/profil.html) — struktur halaman dan elemen yang diakses melalui DOM.
+- [`js/app.js`](worksheet-p9/js/app.js) — data profil, daftar proyek, daftar film, dan fungsi pendukung.
+- [`js/dom.js`](worksheet-p9/js/dom.js) — pemilihan elemen, render proyek dan film, event listener, filter, serta validasi form.
+- Folder [`css/`](worksheet-p9/css/) — gaya halaman yang diteruskan dan disesuaikan dari pertemuan sebelumnya.
+- Folder [`img/`](worksheet-p9/img/) — aset gambar yang digunakan pada halaman.
+
+### A — Memilih elemen DOM
+
+Elemen halaman diambil menggunakan `document.querySelector()` dan disimpan ke dalam variabel berikut.
+
+| Elemen | Pemilih | Variabel |
+|---|---|---|
+| Wadah daftar proyek | `#daftar-proyek` | `wadah` |
+| Tombol filter film | `#filter` | `barisFilter` |
+| Pesan ketika hasil filter kosong | `#pesan-kosong` | `kosong` |
+| Wadah daftar film | `#daftar-film` | `wadahFilm` |
+| Form tambah film | `#form-film` | `form` |
+| Input judul | `#judul-kolom` | `judulInput` |
+| Input tahun rilis | `#tahun-kolom` | `tahunInput` |
+| Input rating | `#rating-kolom` | `ratingInput` |
+
+### B — Menampilkan data proyek
+
+Fungsi `buatKartuProyek()` membentuk kartu dari data `daftarProyek` menggunakan `createElement()`. Teks judul, deskripsi, tahun, dan status ditambahkan melalui `textContent`, bukan dengan menyusun HTML dari string.
+
+Fungsi `renderProyek()` mengosongkan wadah proyek melalui `wadah.replaceChildren()`, menyusun kartu menggunakan `DocumentFragment`, lalu menambahkannya ke `#daftar-proyek`. Dengan demikian, kartu proyek berasal dari data pada `app.js`.
+
+### C — Filter film dan event delegation
+
+Filter diterapkan pada daftar film, bukan pada daftar proyek. Tombol filter memiliki atribut `data-kategori` dengan pilihan:
+
+- `semua` — menampilkan semua film.
+- `tinggi` — menampilkan film dengan rating minimal 8.
+- `rendah` — menampilkan film dengan rating di bawah 8.
+- `tanpa-rating` — menampilkan film yang belum memiliki rating.
+
+Satu `click` event listener dipasang pada elemen induk `#filter`. Kode `event.target.closest("button[data-kategori]")` digunakan untuk menemukan tombol yang diklik. Pola ini disebut event delegation dan menghindari kebutuhan memasang listener secara terpisah pada setiap tombol.
+
+Setiap kali filter dirender, `wadahFilm.replaceChildren()` mengosongkan daftar film sebelumnya. Jika tidak ada film yang cocok, elemen `#pesan-kosong` ditampilkan. Tombol filter aktif juga ditandai dengan kelas `aktif` dan atribut `aria-pressed`.
+
+### D — Validasi form tambah film
+
+Form memakai `preventDefault()` agar pengiriman tidak memuat ulang halaman. Input judul, tahun, dan rating diperiksa melalui nilai input serta `checkValidity()`. Pesan kesalahan ditampilkan pada kolom terkait dan atribut `aria-invalid` diperbarui untuk menunjukkan status validasi.
+
+Jika semua input valid, data film baru ditambahkan ke `daftarFilm`, kemudian daftar dirender ulang sesuai filter yang sedang aktif. Judul film ditampilkan menggunakan elemen DOM dan `textContent` agar teks tidak diproses sebagai markup HTML.
+
+### E — Pengujian di browser
+
+Jalankan `worksheet-p9/profil.html` menggunakan Live Server. Di DevTools Console, periksa bahwa selector yang digunakan mengembalikan elemen HTML, bukan `null`. Selanjutnya, uji semua tombol filter dan form tambah film, termasuk pengiriman form kosong serta input yang valid.
+
+Untuk memahami dampak pengosongan wadah, hapus **sementara** `wadahFilm.replaceChildren()` yang berada di awal fungsi `render()` pada `worksheet-p9/js/dom.js`, simpan berkas, lalu muat ulang halaman yang berasal dari folder P9. Ketika tombol filter diklik berurutan, kartu dari hasil render sebelumnya seharusnya tetap ada sehingga jumlah kartu bertambah. Pulihkan baris tersebut setelah pengujian. Jika tampilan tidak berubah, periksa bahwa Live Server membuka folder dan berkas yang sedang diedit, lalu lakukan hard refresh pada browser.
+
+Tangkapan layar hasil pengujian perlu diambil setelah pengujian manual benar-benar dilakukan; dokumentasi ini tidak menganggap pengujian atau tangkapan layar sudah selesai hanya berdasarkan kode.
+
+### Deklarasi penggunaan AI
+
+AI digunakan sebagai bantuan untuk memeriksa dan menyusun implementasi DOM, render daftar proyek, event delegation untuk filter film, validasi form, dan dokumentasi. Data profil, proyek, daftar film, serta aset halaman meneruskan pekerjaan dari pertemuan sebelumnya. Saya bertanggung jawab untuk memeriksa, memahami, dan mampu menjelaskan kode yang digunakan serta melakukan pengujian langsung di browser.
+

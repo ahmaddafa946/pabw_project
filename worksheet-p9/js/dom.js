@@ -1,42 +1,34 @@
-import { daftarProyek } from "./app.js";
+import { daftarProyek, daftarFilm } from "./app.js";
 
 const wadah = document.querySelector("#daftar-proyek");
 const barisFilter = document.querySelector("#filter");
 const kosong = document.querySelector("#pesan-kosong");
+const wadahFilm = document.querySelector("#daftar-film");
 const form = document.querySelector("#form-film");
 const judulInput = document.querySelector("#judul-kolom");
 const tahunInput = document.querySelector("#tahun-kolom");
 const ratingInput = document.querySelector("#rating-kolom");
-const daftarFilmWadah = document.querySelector("#daftar-film");
 const pesanForm = document.querySelector("#pesan-form");
 const tombolKirim = form.querySelector('button[type="submit"]');
 
 console.log("Wadah proyek:", wadah);
-console.log("Baris filter:", barisFilter);
-console.log("Pesan kosong:", kosong);
+console.log("Baris filter film:", barisFilter);
+console.log("Pesan film kosong:", kosong);
 console.log("Form film:", form);
 console.log("Input judul:", judulInput);
 console.log("Input tahun:", tahunInput);
 console.log("Input rating:", ratingInput);
 
 const kolomForm = [
-  {
-    input: judulInput,
-    pesan: document.querySelector("#galat-judul"),
-  },
-  {
-    input: tahunInput,
-    pesan: document.querySelector("#galat-tahun"),
-  },
-  {
-    input: ratingInput,
-    pesan: document.querySelector("#galat-rating"),
-  },
+  { input: judulInput, pesan: document.querySelector("#galat-judul") },
+  { input: tahunInput, pesan: document.querySelector("#galat-tahun") },
+  { input: ratingInput, pesan: document.querySelector("#galat-rating") },
 ];
 
+let kategoriFilmAktif = "semua";
 let pengirimanDicoba = false;
 
-function buatKartu(proyek) {
+function buatKartuProyek(proyek) {
   const kartu = document.createElement("article");
   kartu.className = "kartu";
 
@@ -58,15 +50,74 @@ function buatKartu(proyek) {
   const status = document.createElement("p");
   status.textContent = proyek.selesai ? "Status: Selesai" : "Status: Proses";
 
-  kaki.append(tahun, status);
   isi.append(judul, deskripsi);
+  kaki.append(tahun, status);
   kartu.append(isi, kaki);
 
   return kartu;
 }
 
-function render(daftar) {
+function renderProyek(daftar) {
   wadah.textContent = "";
+  const fragment = document.createDocumentFragment();
+  daftar.map((proyek) => buatKartuProyek(proyek)).forEach((kartu) => fragment.append(kartu));
+  wadah.append(fragment);
+}
+
+function pilihFilm(kategori) {
+  return daftarFilm.filter((film) => {
+    if (kategori === "semua") return true;
+    if (kategori === "tinggi") return film.rating >= 8;
+    if (kategori === "rendah") return film.rating < 8;
+    if (kategori === "tanpa-rating") return film.rating == null;
+    return false;
+  });
+}
+
+function buatKartuFilm(film) {
+  const kartu = document.createElement("article");
+  kartu.className = "kartu";
+
+  const isi = document.createElement("div");
+  isi.className = "kartu__isi";
+
+  if (film.gambar) {
+    const figure = document.createElement("figure");
+    const gambar = document.createElement("img");
+    gambar.src = film.gambar;
+    gambar.alt = film.alt ?? `Poster ${film.judul}`;
+    gambar.width = 640;
+    gambar.height = 980;
+    gambar.loading = "lazy";
+
+    const caption = document.createElement("figcaption");
+    caption.className = "kartu__judul";
+    caption.textContent = film.judul;
+    figure.append(gambar, caption);
+    isi.append(figure);
+  } else {
+    const judul = document.createElement("h3");
+    judul.className = "kartu__judul";
+    judul.textContent = film.judul;
+    isi.append(judul);
+  }
+
+  const kaki = document.createElement("div");
+  kaki.className = "kartu__kaki";
+
+  const tahun = document.createElement("p");
+  tahun.textContent = `Tahun Rilis: ${film.tahun}`;
+
+  const rating = document.createElement("p");
+  rating.textContent = `Rating: ${film.rating}`;
+
+  kaki.append(tahun, rating);
+  kartu.append(isi, kaki);
+  return kartu;
+}
+
+function render(daftar) {
+  wadahFilm.textContent = "";
 
   if (daftar.length === 0) {
     kosong.hidden = false;
@@ -75,8 +126,8 @@ function render(daftar) {
 
   kosong.hidden = true;
   const fragment = document.createDocumentFragment();
-  daftar.map((proyek) => buatKartu(proyek)).forEach((kartu) => fragment.append(kartu));
-  wadah.append(fragment);
+  daftar.map((film) => buatKartuFilm(film)).forEach((kartu) => fragment.append(kartu));
+  wadahFilm.append(fragment);
 }
 
 function tandaiTombolAktif(tombolAktif) {
@@ -87,20 +138,14 @@ function tandaiTombolAktif(tombolAktif) {
   });
 }
 
-function pilihProyek(kategori) {
-  return daftarProyek.filter(
-    (proyek) => kategori === "semua" || proyek.kategori === kategori,
-  );
-}
-
 barisFilter.addEventListener("click", (event) => {
   if (!(event.target instanceof Element)) return;
 
   const tombol = event.target.closest("button[data-kategori]");
   if (!tombol || !barisFilter.contains(tombol)) return;
 
-  const kategori = tombol.dataset.kategori;
-  render(pilihProyek(kategori));
+  kategoriFilmAktif = tombol.dataset.kategori;
+  render(pilihFilm(kategoriFilmAktif));
   tandaiTombolAktif(tombol);
 });
 
@@ -113,33 +158,6 @@ function validasiKolom(kolom) {
 
 function validasiSemuaKolom() {
   return kolomForm.map((kolom) => validasiKolom(kolom)).every(Boolean);
-}
-
-function buatKartuFilm(film) {
-  const kartu = document.createElement("article");
-  kartu.className = "kartu";
-
-  const isi = document.createElement("div");
-  isi.className = "kartu__isi";
-
-  const judul = document.createElement("h3");
-  judul.className = "kartu__judul";
-  judul.textContent = film.judul;
-
-  const kaki = document.createElement("div");
-  kaki.className = "kartu__kaki";
-
-  const tahun = document.createElement("p");
-  tahun.textContent = `Tahun Rilis: ${film.tahun}`;
-
-  const rating = document.createElement("p");
-  rating.textContent = `Rating: ${film.rating}`;
-
-  isi.append(judul);
-  kaki.append(tahun, rating);
-  kartu.append(isi, kaki);
-
-  return kartu;
 }
 
 form.addEventListener("input", (event) => {
@@ -169,13 +187,14 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
-  const film = {
+  const filmBaru = {
     judul: judulInput.value.trim(),
     tahun: Number(tahunInput.value),
     rating: Number(ratingInput.value),
   };
 
-  daftarFilmWadah.append(buatKartuFilm(film));
+  daftarFilm.push(filmBaru);
+  render(pilihFilm(kategoriFilmAktif));
   form.reset();
 
   kolomForm.forEach(({ input, pesan }) => {
@@ -185,9 +204,10 @@ form.addEventListener("submit", (event) => {
 
   pengirimanDicoba = false;
   tombolKirim.disabled = false;
-  pesanForm.textContent = `${film.judul} berhasil ditambahkan ke daftar film.`;
+  pesanForm.textContent = `${filmBaru.judul} berhasil ditambahkan ke daftar film.`;
   pesanForm.hidden = false;
 });
 
-render(daftarProyek);
+renderProyek(daftarProyek);
+render(pilihFilm(kategoriFilmAktif));
 tandaiTombolAktif(barisFilter.querySelector('button[data-kategori="semua"]'));

@@ -11,8 +11,8 @@ Elemen yang disiapkan untuk diakses menggunakan `document.querySelector()`:
 | Bagian halaman | Pemilih | Diisi apa | Nama variabel |
 | --- | --- | --- | --- |
 | Daftar proyek | `#daftar-proyek` | Kartu proyek dari array JavaScript | `wadah` |
-| Baris tombol filter | `#filter` | Tombol filter kategori proyek | `barisFilter` |
-| Pesan daftar kosong | `#pesan-kosong` | Pesan ketika tidak ada proyek yang cocok | `kosong` |
+| Baris tombol filter | `#filter` | Tombol filter daftar film berdasarkan rating | `barisFilter` |
+| Pesan daftar kosong | `#pesan-kosong` | Pesan ketika tidak ada film yang cocok | `kosong` |
 | Form film | `#form-film` | Form untuk menambahkan film | `form` |
 | Kolom judul | `#judul-kolom` | Judul film | `judulInput` |
 | Kolom tahun | `#tahun-kolom` | Tahun rilis film | `tahunInput` |
@@ -39,6 +39,10 @@ CSS Grid pada `css/layout.css` memakai named areas untuk menjaga susunan konten 
 - Pada layar desktop, susunan dua kolom meneruskan pola P6: profil dan proyek berada di baris pertama, lalu form di sidebar kiri dan daftar film di kolom utama kanan.
 - Galeri mengikuti breakpoint pada `css/responsif.css` dan menggunakan kolom `minmax(0, 1fr)` agar isi tidak meluber.
 - Selector dan ID untuk DOM tetap dipertahankan; perubahan layout hanya mengatur posisi bagian halaman.
+
+### Catatan penyesuaian filter
+
+Sesuai penyesuaian halaman, filter interaktif diterapkan pada daftar film, bukan pada daftar proyek. Bagian render proyek tetap menggunakan array proyek dari P8, sementara event delegation di `#filter` mengendalikan kategori rating film.
 
 ### Pemeriksaan di DevTools
 

@@ -36,7 +36,7 @@ worksheet-p9/
 CSS Grid pada `css/layout.css` memakai named areas untuk menjaga susunan konten setelah interaksi DOM ditambahkan.
 
 - Pada layar kecil, profil, proyek, daftar film, dan form ditumpuk satu kolom.
-- Pada layar desktop, profil berada di sidebar, proyek di sampingnya, lalu daftar film dan form masing-masing menempati lebar penuh.
+- Pada layar desktop, susunan dua kolom meneruskan pola P6: profil dan proyek berada di baris pertama, lalu form di sidebar kiri dan daftar film di kolom utama kanan.
 - Galeri mengikuti breakpoint pada `css/responsif.css` dan menggunakan kolom `minmax(0, 1fr)` agar isi tidak meluber.
 - Selector dan ID untuk DOM tetap dipertahankan; perubahan layout hanya mengatur posisi bagian halaman.
 

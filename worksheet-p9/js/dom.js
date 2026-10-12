@@ -69,7 +69,7 @@ function pilihFilm(kategori) {
     if (kategori === "semua") return true;
     if (kategori === "tinggi") return film.rating >= 8;
     if (kategori === "rendah") return film.rating < 8;
-    if (kategori === "tanpa-rating") return film.rating == null;
+    if (kategori === "tanpa-rating") return film.rating === null || film.rating === undefined;
     return false;
   });
 }

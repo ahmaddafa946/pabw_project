@@ -47,17 +47,19 @@
 
       <section id="list-proyek">
         <h2>Proyek Saya</h2>
-        <div class="baris-filter" id="filter" aria-label="Filter proyek">
-          <button type="button" data-kategori="semua" aria-pressed="true">Semua</button>
-          <button type="button" data-kategori="selesai" aria-pressed="false">Selesai</button>
-          <button type="button" data-kategori="proses" aria-pressed="false">Dalam Proses</button>
-        </div>
-        <p id="pesan-kosong" hidden>Tidak ada proyek yang sesuai dengan filter.</p>
+        <p id="ringkasan-proyek"></p>
         <div class="galeri grid" id="daftar-proyek"></div>
       </section>
 
       <section id="list-film">
         <h2>List Film Favorit</h2>
+        <div class="baris-filter" id="filter" aria-label="Filter daftar film">
+          <button type="button" data-kategori="semua" aria-pressed="true">Semua Film</button>
+          <button type="button" data-kategori="tinggi" aria-pressed="false">Rating ≥ 8</button>
+          <button type="button" data-kategori="rendah" aria-pressed="false">Rating &lt; 8</button>
+          <button type="button" data-kategori="tanpa-rating" aria-pressed="false">Tanpa Rating</button>
+        </div>
+        <p id="pesan-kosong" hidden>Tidak ada film yang sesuai dengan filter.</p>
         <div class="galeri grid" id="daftar-film"></div>
       </section>
 

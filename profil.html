@@ -47,6 +47,12 @@
 
       <section id="list-proyek">
         <h2>Proyek Saya</h2>
+        <div class="baris-filter" id="filter" aria-label="Filter proyek">
+          <button type="button" data-filter="semua">Semua</button>
+          <button type="button" data-filter="selesai">Selesai</button>
+          <button type="button" data-filter="proses">Dalam Proses</button>
+        </div>
+        <p id="pesan-kosong" hidden>Tidak ada proyek yang sesuai dengan filter.</p>
         <div class="galeri grid" id="daftar-proyek"></div>
       </section>
 
@@ -60,7 +66,7 @@
         <div class="katalog">
           <div class="kartu">
             <div class="kartu__isi">
-              <form action="/simpan" method="post">
+              <form id="form-film" action="/simpan" method="post">
                 <div class="form-kolom">
                   <label for="judul-kolom">Judul</label>
                   <input type="text" id="judul-kolom" name="judul-kolom" required>
@@ -96,5 +102,6 @@
   </div>
 
   <script type="module" src="./js/app.js"></script>
+  <script type="module" src="./js/dom.js"></script>
 </body>
 </html>

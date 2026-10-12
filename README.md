@@ -455,7 +455,7 @@ Kedua fungsi hanya bergantung pada argumennya dan tidak mengubah data di luar fu
 
 ### Struktur halaman
 
-`profil.html` sekarang hanya memuat struktur dan elemen target. Nilai identitas, keahlian, proyek, film, dan footer diisi oleh `app.js` setelah halaman dimuat melalui:
+`profil.html` memuat struktur dan elemen target. Pada P8, data proyek disimpan sebagai array of objects dan ditampilkan sebagai ringkasan jumlah; kartu proyek belum dibuat di DOM. `app.js` mengisi data profil dan film serta memperlihatkan data proyek lewat Console. Pada P9, `dom.js` membentuk kartu proyek dari array P8, sedangkan filter event delegation diterapkan pada daftar film. Nilai halaman dimuat melalui:
 
 ```html
 <script type="module" src="./js/app.js"></script>

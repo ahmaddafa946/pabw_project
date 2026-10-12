@@ -115,6 +115,10 @@ Galat tersebut terjadi ketika `profil.alamat` bernilai `null` tetapi property `k
 const lokasiProfil = profil.alamat?.kota ?? "Belum diisi";
 ```
 
+### Batas pekerjaan P8
+
+Pada P8, data proyek disimpan sebagai array of objects dan diolah dengan `map()`, `filter()`, serta `find()`. Rincian proyek diperiksa lewat `console.table()`; kartu proyek belum dibuat di DOM. Pembuatan kartu proyek dari data yang sama dilanjutkan pada P9 melalui `js/dom.js`.
+
 ### Deklarasi penggunaan AI
 
 AI digunakan sebagai bantuan dalam implementasi Pertemuan 8, terutama untuk:

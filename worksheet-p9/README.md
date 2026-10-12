@@ -96,12 +96,13 @@ Uji di Chrome DevTools setelah menjalankan halaman lewat Live Server:
 
 ### Deklarasi penggunaan AI
 
-AI digunakan sebagai bantuan dalam pengembangan dan pemeriksaan implementasi DOM, render daftar proyek dari array P8, event delegation untuk filter daftar film, validasi form, dan dokumentasi. Data profil, identitas, proyek, film, serta struktur halaman melanjutkan pekerjaan pribadi dari pertemuan sebelumnya. Saya bertanggung jawab memeriksa, memahami, dan mampu menjelaskan kode yang disimpan. Hasil Console dan tangkapan layar perlu saya verifikasi sendiri melalui peramban sebelum penyerahan.
+AI digunakan sebagai bantuan dalam pemeriksaan struktur, implementasi DOM, render daftar proyek dari array P8, event delegation untuk filter daftar film, validasi form, dan dokumentasi. Data profil, identitas, proyek, film, serta struktur halaman melanjutkan pekerjaan pribadi dari pertemuan sebelumnya. Saya bertanggung jawab memeriksa, memahami, dan mampu menjelaskan kode yang disimpan. Pengujian browser dan tangkapan layar harus saya lakukan sendiri; bukti yang belum diambil tidak dinyatakan sudah selesai.
 
 ### Pemeriksaan akhir
 
 - [x] `profil.html`, seluruh CSS, `js/app.js`, dan `js/dom.js` tersedia.
 - [x] Selector yang dipakai cocok dengan ID pada HTML.
+- [x] `app.js` berisi data dan fungsi; manipulasi DOM dipusatkan di `dom.js`.
 - [x] Daftar proyek dirender dari array dengan `createElement()` dan `textContent`.
 - [x] Wadah dikosongkan sebelum render ulang.
 - [x] Filter menggunakan satu pendengar klik pada induknya.
@@ -109,3 +110,25 @@ AI digunakan sebagai bantuan dalam pengembangan dan pemeriksaan implementasi DOM
 - [x] Form mencegah pemuatan ulang dan memvalidasi setiap kolom.
 - [x] Deklarasi AI tersedia di README.
 - [ ] Tangkapan layar hasil pengujian browser ditambahkan setelah pengujian manual.
+
+### Jawaban tiket keluar (F)
+
+1. `#daftar-proyek` diambil dengan `document.querySelector("#daftar-proyek")` dan disimpan dalam variabel `wadah`.
+2. `querySelector()` mengembalikan satu elemen pertama yang cocok atau `null`, sedangkan `querySelectorAll()` mengembalikan `NodeList`. `NodeList` bukan array biasa, jadi ubah dengan `Array.from()` sebelum memakai `map()` atau `filter()`.
+3. Satu pendengar klik dipasang pada induk `#filter`. Kode `barisFilter.addEventListener("click", ...)` bersama `event.target.closest("button[data-kategori]")` membuat semua tombol filter ditangani tanpa memasang pendengar per tombol.
+4. Jika `wadahFilm.replaceChildren()` dihapus dari awal `render()`, kartu dari render sebelumnya tetap ada dan kartu baru ditambahkan di bawahnya sehingga daftar berlipat.
+5. `innerHTML` mengurai isi sebagai markup dan dapat membuka risiko XSS. Kode menggunakan `createElement()` dan `textContent` agar teks pengguna tidak diproses sebagai HTML.
+
+### Satu baris untuk diingat (F.2)
+
+Kosongkan wadah di awal fungsi render dan pasang pendengar event di luar fungsi render agar kartu tidak berlipat dan event tidak terpasang berkali-kali.
+
+### Contoh catatan kasus E.4
+
+| Gejala yang saya lihat | Sebabnya | Baris yang saya ubah |
+| --- | --- | --- |
+| Daftar film berlipat saat berpindah filter | Wadah belum dikosongkan sebelum menggambar ulang | `wadahFilm.replaceChildren()` di awal `render()` |
+| Data film tampil dua kali | `app.js` dan `dom.js` sama-sama membentuk kartu film | Manipulasi DOM film dipusatkan di `dom.js` |
+| Pesan kosong tidak muncul saat filter tanpa rating | Hasil filter kosong belum ditangani di render | Pemeriksaan `daftar.length === 0` di `render()` |
+
+Catatan E.4 di atas adalah panduan kasus yang diperiksa dalam kode. Sesuaikan dengan gejala yang benar-benar Anda temui saat pengujian. Penilaian mandiri dan catatan pengampu tetap perlu Anda isi sendiri berdasarkan hasil pengerjaan.

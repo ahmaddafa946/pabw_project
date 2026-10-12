@@ -12,21 +12,18 @@ export const daftarProyek = [
     judul: "KosManage Web",
     tahun: 2026,
     selesai: true,
-    kategori: "selesai",
     deskripsi: "Aplikasi web untuk membantu pengelolaan data kos.",
   },
   {
     judul: "KosManage Mobile",
     tahun: 2026,
     selesai: true,
-    kategori: "selesai",
     deskripsi: "Aplikasi mobile pendamping untuk pengelolaan kos.",
   },
   {
     judul: "Profil Responsif PABW",
     tahun: 2026,
     selesai: true,
-    kategori: "selesai",
     deskripsi: "Halaman profil responsif dengan HTML dan CSS modern.",
   },
 ];
@@ -114,7 +111,7 @@ if (typeof document !== "undefined") {
     profilTahun: document.querySelector("#profil-tahun"),
     profilLokasi: document.querySelector("#profil-lokasi"),
     profilKeahlian: document.querySelector("#profil-keahlian"),
-    daftarProyek: document.querySelector("#daftar-proyek"),
+    ringkasanProyek: document.querySelector("#ringkasan-proyek"),
     daftarFilm: document.querySelector("#daftar-film"),
     footerNama: document.querySelector("#footer-nama"),
     footerNim: document.querySelector("#footer-nim"),
@@ -129,33 +126,7 @@ if (typeof document !== "undefined") {
   el.profilLokasi.textContent = `Kota: ${lokasiProfil}`;
   el.profilKeahlian.textContent = `Keahlian: ${formatKeahlian(profil.keahlian)}`;
 
-  daftarProyek.forEach((proyek) => {
-    const article = document.createElement("article");
-    article.className = "kartu";
-
-    const isi = document.createElement("div");
-    isi.className = "kartu__isi";
-
-    const judul = document.createElement("h3");
-    judul.textContent = proyek.judul;
-
-    const deskripsi = document.createElement("p");
-    deskripsi.textContent = proyek.deskripsi;
-
-    const kaki = document.createElement("div");
-    kaki.className = "kartu__kaki";
-
-    const tahun = document.createElement("p");
-    tahun.textContent = `Tahun: ${proyek.tahun}`;
-
-    const status = document.createElement("p");
-    status.textContent = proyek.selesai ? "Status: Selesai" : "Status: Proses";
-
-    kaki.append(tahun, status);
-    isi.append(judul, deskripsi);
-    article.append(isi, kaki);
-    el.daftarProyek.append(article);
-  });
+  el.ringkasanProyek.textContent = `Jumlah proyek: ${jumlahProyek}. Rincian data tersedia di Console.`;
 
   daftarFilm.forEach((film) => {
     const article = document.createElement("article");

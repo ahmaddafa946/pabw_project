@@ -1,4 +1,4 @@
-const profil = {
+export const profil = {
   nama: "Ahmad Dafa Ardevanda",
   peran: "Mahasiswa Informatika yang belajar front-end",
   nim: "25523179",
@@ -7,23 +7,26 @@ const profil = {
   keahlian: ["HTML", "CSS", "JavaScript", "Responsive Design"],
 };
 
-const daftarProyek = [
+export const daftarProyek = [
   {
     judul: "KosManage Web",
     tahun: 2026,
     selesai: true,
+    kategori: "selesai",
     deskripsi: "Aplikasi web untuk membantu pengelolaan data kos.",
   },
   {
     judul: "KosManage Mobile",
     tahun: 2026,
     selesai: true,
+    kategori: "selesai",
     deskripsi: "Aplikasi mobile pendamping untuk pengelolaan kos.",
   },
   {
     judul: "Profil Responsif PABW",
     tahun: 2026,
     selesai: true,
+    kategori: "selesai",
     deskripsi: "Halaman profil responsif dengan HTML dan CSS modern.",
   },
 ];
@@ -31,7 +34,7 @@ const daftarProyek = [
 const jumlahProyek = daftarProyek.length;
 let filterAktif = "semua";
 
-const daftarFilm = [
+export const daftarFilm = [
   {
     judul: "Avengers Endgame",
     tahun: 2019,

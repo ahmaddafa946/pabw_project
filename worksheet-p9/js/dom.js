@@ -1,5 +1,13 @@
-import { daftarProyek, daftarFilm } from "./app.js";
+import { profil, daftarProyek, daftarFilm, buatPerkenalan, formatKeahlian } from "./app.js";
 
+const judulHalaman = document.querySelector("#judul-halaman");
+const judulTampilan = document.querySelector("#judul-halaman-tampilan");
+const profilPerkenalan = document.querySelector("#profil-perkenalan");
+const profilNim = document.querySelector("#profil-nim");
+const profilTahun = document.querySelector("#profil-tahun");
+const profilLokasi = document.querySelector("#profil-lokasi");
+const profilKeahlian = document.querySelector("#profil-keahlian");
+const ringkasanProyek = document.querySelector("#ringkasan-proyek");
 const wadah = document.querySelector("#daftar-proyek");
 const barisFilter = document.querySelector("#filter");
 const kosong = document.querySelector("#pesan-kosong");
@@ -10,6 +18,9 @@ const tahunInput = document.querySelector("#tahun-kolom");
 const ratingInput = document.querySelector("#rating-kolom");
 const pesanForm = document.querySelector("#pesan-form");
 const tombolKirim = form.querySelector('button[type="submit"]');
+const footerNama = document.querySelector("#footer-nama");
+const footerNim = document.querySelector("#footer-nim");
+const footerTahun = document.querySelector("#footer-tahun");
 
 console.log("Wadah proyek:", wadah);
 console.log("Baris filter film:", barisFilter);
@@ -27,6 +38,21 @@ const kolomForm = [
 
 let kategoriFilmAktif = "semua";
 let pengirimanDicoba = false;
+
+const lokasiProfil = profil.alamat?.kota ?? profil.alamat ?? "Belum diisi";
+const bioProfil = profil.bio ?? `Saya sudah membuat ${daftarProyek.length} proyek.`;
+
+judulHalaman.textContent = `Profil ${profil.nama}`;
+judulTampilan.textContent = `Playlist Film Favorit — ${profil.nama}`;
+profilPerkenalan.textContent = buatPerkenalan(profil);
+profilNim.textContent = `NIM: ${profil.nim}`;
+profilTahun.textContent = `Tahun: ${profil.tahun}`;
+profilLokasi.textContent = `Kota: ${lokasiProfil}`;
+profilKeahlian.textContent = `Keahlian: ${formatKeahlian(profil.keahlian)}`;
+ringkasanProyek.textContent = `Jumlah proyek: ${daftarProyek.length}. ${bioProfil}`;
+footerNama.textContent = profil.nama;
+footerNim.textContent = profil.nim;
+footerTahun.textContent = profil.tahun;
 
 function buatKartuProyek(proyek) {
   const kartu = document.createElement("article");
@@ -58,7 +84,7 @@ function buatKartuProyek(proyek) {
 }
 
 function renderProyek(daftar) {
-  wadah.textContent = "";
+  wadah.replaceChildren();
   const fragment = document.createDocumentFragment();
   daftar.map((proyek) => buatKartuProyek(proyek)).forEach((kartu) => fragment.append(kartu));
   wadah.append(fragment);
@@ -109,7 +135,7 @@ function buatKartuFilm(film) {
   tahun.textContent = `Tahun Rilis: ${film.tahun}`;
 
   const rating = document.createElement("p");
-  rating.textContent = `Rating: ${film.rating}`;
+  rating.textContent = film.rating == null ? "Rating: Belum ada" : `Rating: ${film.rating}`;
 
   kaki.append(tahun, rating);
   kartu.append(isi, kaki);
@@ -117,7 +143,7 @@ function buatKartuFilm(film) {
 }
 
 function render(daftar) {
-  wadahFilm.textContent = "";
+  wadahFilm.replaceChildren();
 
   if (daftar.length === 0) {
     kosong.hidden = false;

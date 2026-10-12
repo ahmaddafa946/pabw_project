@@ -26,7 +26,7 @@ worksheet-p8/
 
 ### Tata letak lanjutan setelah P5
 
-Layout di `worksheet-p8/css/layout.css` dan `worksheet-p9/css/layout.css` menggunakan named grid areas. Di ponsel, profil, proyek, daftar film, dan form tersusun satu kolom. Di desktop, profil menjadi sidebar dan proyek berada di sampingnya, sementara daftar film dan form memakai lebar penuh pada baris berikutnya. `responsif.css` mengatur galeri menjadi satu, dua, atau tiga kolom; `minmax(0, 1fr)` dan `min-width: 0` membantu mencegah konten panjang memaksa halaman melebar.
+Layout di `worksheet-p8/css/layout.css` dan `worksheet-p9/css/layout.css` menggunakan named grid areas. Di ponsel, profil, proyek, daftar film, dan form tersusun satu kolom. Di desktop, susunan dua kolom meneruskan pola P6: profil dan proyek berada di baris pertama, lalu form mempertahankan sidebar di kolom kiri dan daftar film mengisi kolom utama di kanan. `responsif.css` mengatur galeri menjadi satu, dua, atau tiga kolom; `minmax(0, 1fr)` dan `min-width: 0` membantu mencegah konten panjang memaksa halaman melebar.
 
 ### Data JavaScript
 

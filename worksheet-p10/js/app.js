@@ -1,20 +1,4 @@
-export const profil = {
-  nama: "Ahmad Dafa Ardevanda",
-  peran: "Mahasiswa Informatika yang belajar front-end",
-  nim: "25523179",
-  tahun: 2026,
-  alamat: "Sleman, Sardonoharjo",
-  keahlian: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-};
 
-
-
-
-export function buatPerkenalan({ nama, peran }) {
-  return `${nama} — ${peran}`;
-}
-
-export const formatKeahlian = (daftar) => daftar.join(" · ");
 
 const jumlahProyek = daftarProyek.length;
 const lokasiProfil = profil.alamat?.kota ?? "Belum diisi";

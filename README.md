@@ -529,5 +529,5 @@ Tangkapan layar hasil pengujian perlu diambil setelah pengujian manual benar-ben
 
 ### Deklarasi penggunaan AI
 
-AI digunakan sebagai bantuan untuk memeriksa dan menyusun implementasi DOM, render daftar proyek, event delegation untuk filter film, validasi form, dan dokumentasi. Data profil, proyek, daftar film, serta aset halaman meneruskan pekerjaan dari pertemuan sebelumnya. Saya bertanggung jawab untuk memeriksa, memahami, dan mampu menjelaskan kode yang digunakan serta melakukan pengujian langsung di browser.
+AI digunakan sebagai bantuan untuk memeriksa dan menyusun implementasi DOM
 

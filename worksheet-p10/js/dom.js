@@ -236,7 +236,7 @@ form.addEventListener("submit", (event) => {
   };
 
   daftarFilm.push(filmBaru);
-  render(pilihFilm(kategoriFilmAktif));
+  renderFilm(pilihFilm(kategoriFilmAktif));
   form.reset();
 
   kolomForm.forEach(({ input, pesan }) => {

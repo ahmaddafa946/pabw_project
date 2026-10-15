@@ -1,0 +1,33 @@
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "profil"
+    "proyek"
+    "film"
+    "form";
+  gap: var(--space-4);
+  min-width: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+}
+/* Tablet: galeri proyek dan film dapat menampilkan dua kolom. */
+@media (min-width: 48rem) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Desktop: pertahankan pola P6 — form di sidebar, daftar film di kolom utama. */
+@media (min-width: 60rem) {
+  .content {
+    grid-template-columns: 16rem minmax(0, 1fr);
+    grid-template-areas:
+      "profil proyek"
+      "form film";
+  }
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+img { max-width: 100%; height: auto; }
+.table-wrap { max-width: 100%; overflow-x: auto; }
+p { font-size: 1rem; line-height: 1.6; }

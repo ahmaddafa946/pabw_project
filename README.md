@@ -531,3 +531,33 @@ Tangkapan layar hasil pengujian perlu diambil setelah pengujian manual benar-ben
 
 AI digunakan sebagai bantuan untuk memeriksa dan menyusun implementasi DOM
 
+
+
+# PABW — Worksheet Pertemuan 10
+
+## JavaScript Asinkron: fetch, Promise, dan JSON
+
+Pertemuan 10 melanjutkan halaman profil dan playlist film dari folder `worksheet-p9/`. Implementasi P10 berada di folder `worksheet-p10/`.
+
+### Struktur P10
+
+- `profil.html` — mempertahankan profil, daftar proyek, filter film, dan form tambah film; menambahkan pesan memuat, gagal, dan kosong untuk daftar proyek.
+- `data/proyek.json` — menyimpan data proyek sebagai JSON dengan `id` unik.
+- `js/api.js` — satu tempat untuk alamat data; menjalankan `fetch`, memeriksa `respons.ok`, membaca JSON, dan mengekspor `ambilProyek()`.
+- `js/app.js` — mengatur pemanggilan data dan menangani galat dengan `try/catch/finally`.
+- `js/dom.js` — mempertahankan render kartu dan interaksi film, serta mengekspor `render()`, `tampilkanGalat()`, dan `aturMemuat()` untuk daftar proyek.
+- CSS dan gambar memakai aset dari folder P9 agar tampilan sebelumnya tetap terjaga.
+
+### Cara menjalankan dan memeriksa
+
+Buka folder repository di VS Code, jalankan `worksheet-p10/profil.html` dengan Live Server, lalu periksa tab Network. Permintaan proyek diarahkan ke alamat raw GitHub dan seharusnya berstatus 200. Uji juga keadaan kosong dengan isi JSON `[]`, dan keadaan gagal dengan alamat yang tidak valid; pulihkan data setelah pengujian.
+
+### Arah konversi JSON
+
+- `respons.json()` membaca badan respons menjadi nilai JavaScript.
+- `JSON.parse(teks)` mengubah teks JSON menjadi nilai JavaScript.
+- `JSON.stringify(nilai)` mengubah nilai JavaScript menjadi teks JSON.
+
+### Deklarasi penggunaan AI
+
+AI membantu menyusun pemisahan pengambilan data di `js/api.js`, penanganan status HTTP dan Promise, serta pesan keadaan antarmuka. Topik profil, data proyek, pilihan film, dan struktur halaman berasal dari proyek saya pada pertemuan sebelumnya. Saya tetap bertanggung jawab menguji hasilnya dan memahami fungsi setiap bagian kode.

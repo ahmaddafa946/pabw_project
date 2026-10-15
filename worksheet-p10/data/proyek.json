@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "judul": "KosManage Web",
+    "tahun": 2026,
+    "kategori": "web",
+    "selesai": true,
+    "deskripsi": "Aplikasi web untuk membantu pengelolaan data kos."
+  },
+  {
+    "id": 2,
+    "judul": "KosManage Mobile",
+    "tahun": 2026,
+    "kategori": "mobile",
+    "selesai": true,
+    "deskripsi": "Aplikasi mobile pendamping untuk pengelolaan data kos."
+  },
+  {
+    "id": 3,
+    "judul": "Profil Responsif PABW",
+    "tahun": 2026,
+    "kategori": "web",
+    "selesai": true,
+    "deskripsi": "Halaman profil responsif dengan HTML dan CSS modern."
+  }
+]

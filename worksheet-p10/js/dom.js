@@ -1,4 +1,4 @@
-import { profil, daftarProyek, daftarFilm, buatPerkenalan, formatKeahlian } from "./app.js";
+import { profil, daftarFilm, buatPerkenalan, formatKeahlian } from "./app.js";
 
 const judulHalaman = document.querySelector("#judul-halaman");
 const judulTampilan = document.querySelector("#judul-halaman-tampilan");
@@ -9,6 +9,9 @@ const profilLokasi = document.querySelector("#profil-lokasi");
 const profilKeahlian = document.querySelector("#profil-keahlian");
 const ringkasanProyek = document.querySelector("#ringkasan-proyek");
 const wadah = document.querySelector("#daftar-proyek");
+const muatProyek = document.querySelector("#muat-proyek");
+const kosongProyek = document.querySelector("#kosong-proyek");
+const galatProyek = document.querySelector("#galat-proyek");
 const barisFilter = document.querySelector("#filter");
 const kosong = document.querySelector("#pesan-kosong");
 const wadahFilm = document.querySelector("#daftar-film");
@@ -40,7 +43,7 @@ let kategoriFilmAktif = "semua";
 let pengirimanDicoba = false;
 
 const lokasiProfil = profil.alamat?.kota ?? profil.alamat ?? "Belum diisi";
-const bioProfil = profil.bio ?? `Saya sudah membuat ${daftarProyek.length} proyek.`;
+const bioProfil = profil.bio ?? "Saya sedang mengembangkan beberapa proyek.";
 
 judulHalaman.textContent = `Profil ${profil.nama}`;
 judulTampilan.textContent = `Playlist Film Favorit — ${profil.nama}`;
@@ -49,7 +52,7 @@ profilNim.textContent = `NIM: ${profil.nim}`;
 profilTahun.textContent = `Tahun: ${profil.tahun}`;
 profilLokasi.textContent = `Kota: ${lokasiProfil}`;
 profilKeahlian.textContent = `Keahlian: ${formatKeahlian(profil.keahlian)}`;
-ringkasanProyek.textContent = `Jumlah proyek: ${daftarProyek.length}. ${bioProfil}`;
+ringkasanProyek.textContent = bioProfil;
 footerNama.textContent = profil.nama;
 footerNim.textContent = profil.nim;
 footerTahun.textContent = profil.tahun;
@@ -83,11 +86,24 @@ function buatKartuProyek(proyek) {
   return kartu;
 }
 
-function renderProyek(daftar) {
+export function render(daftar) {
   wadah.replaceChildren();
+  kosongProyek.hidden = daftar.length !== 0;
+  if (daftar.length === 0) return;
   const fragment = document.createDocumentFragment();
-  daftar.map((proyek) => buatKartuProyek(proyek)).forEach((kartu) => fragment.append(kartu));
+  daftar.forEach((proyek) => fragment.append(buatKartuProyek(proyek)));
   wadah.append(fragment);
+}
+
+export function aturMemuat(aktif) {
+  muatProyek.hidden = !aktif;
+  if (aktif) { galatProyek.hidden = true; kosongProyek.hidden = true; }
+}
+
+export function tampilkanGalat(pesan) {
+  galatProyek.textContent = pesan;
+  galatProyek.hidden = false;
+  kosongProyek.hidden = true;
 }
 
 function pilihFilm(kategori) {
@@ -142,7 +158,7 @@ function buatKartuFilm(film) {
   return kartu;
 }
 
-function render(daftar) {
+function renderFilm(daftar) {
   wadahFilm.replaceChildren();
 
   if (daftar.length === 0) {
@@ -171,7 +187,7 @@ barisFilter.addEventListener("click", (event) => {
   if (!tombol || !barisFilter.contains(tombol)) return;
 
   kategoriFilmAktif = tombol.dataset.kategori;
-  render(pilihFilm(kategoriFilmAktif));
+  renderFilm(pilihFilm(kategoriFilmAktif));
   tandaiTombolAktif(tombol);
 });
 
@@ -234,6 +250,5 @@ form.addEventListener("submit", (event) => {
   pesanForm.hidden = false;
 });
 
-renderProyek(daftarProyek);
-render(pilihFilm(kategoriFilmAktif));
+renderFilm(pilihFilm(kategoriFilmAktif));
 tandaiTombolAktif(barisFilter.querySelector('button[data-kategori="semua"]'));

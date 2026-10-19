@@ -561,3 +561,21 @@ Buka folder repository di VS Code, jalankan `worksheet-p10/profil.html` dengan L
 ### Deklarasi penggunaan AI
 
 AI membantu menyusun pemisahan pengambilan data di `js/api.js`, penanganan status HTTP dan Promise, serta pesan keadaan antarmuka. Topik profil, data proyek, pilihan film, dan struktur halaman berasal dari proyek saya pada pertemuan sebelumnya. Saya tetap bertanggung jawab menguji hasilnya dan memahami fungsi setiap bagian kode.
+
+
+# PABW — Worksheet Pertemuan 11
+
+Pertemuan 11 melanjutkan halaman worksheet-p10/ ke folder [worksheet-p11/](worksheet-p11/). Halaman ini tetap memakai topik profil dan playlist film, sekaligus memecah JavaScript menjadi modul dengan satu tanggung jawab per berkas.
+
+## Struktur berkas
+
+- [profil.html](worksheet-p11/profil.html) — struktur halaman dan pemanggil modul utama.
+- [js/data.js](worksheet-p11/js/data.js) — data profil, data awal film, serta fungsi murni buatPerkenalan(), formatKeahlian(), saring(), dan saringFilm().
+- [js/state.js](worksheet-p11/js/state.js) — satu objek state dan fungsi pengubahnya; pilihan kategori proyek dan daftar favorit disimpan menggunakan localStorage.
+- [js/dom.js](worksheet-p11/js/dom.js) — pemilihan elemen, pembuatan kartu, render(state), perubahan kelas tombol, dan validasi form.
+- [js/events.js](worksheet-p11/js/events.js) — pemasangan pendengar klik filter, favorit, reset, serta form.
+- [js/app.js](worksheet-p11/js/app.js) — perakit modul dan alur memuat data proyek.
+- [js/api.js](worksheet-p11/js/api.js) — modul pengambilan JSON dari P10, dipakai tanpa perubahan.
+- [data/proyek.json](worksheet-p11/data/proyek.json) — salinan data proyek yang disediakan bersama worksheet.
+- css/ dan img/ — salinan CSS dan aset yang digunakan halaman P10.
+

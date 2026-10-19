@@ -24,12 +24,12 @@ function hapusSimpanan() {
   }
 }
 
-export function simpan() {
+export function simpan(stateAplikasi = state) {
   // Hanya pilihan tampilan yang disimpan, bukan data proyek, profil, atau input form.
   const isi = {
     versi: VERSI,
-    kategoriAktif: state.kategoriAktif,
-    favorit: state.favorit,
+    kategoriAktif: stateAplikasi.kategoriAktif,
+    favorit: stateAplikasi.favorit,
   };
 
   try {
@@ -84,7 +84,7 @@ export function isiProyek(daftar) {
 export function pilihKategori(nilai) {
   if (!KATEGORI_PROYEK.includes(nilai)) return;
   state.kategoriAktif = nilai;
-  simpan();
+  simpan(state);
   render(state);
 }
 

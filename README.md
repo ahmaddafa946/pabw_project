@@ -606,8 +606,9 @@ AI membantu menyusun rancangan pemisahan modul, alur perubahan state dan render,
 
 ## Pekerjaan rumah menuju P12 — Node.js LTS
 
-Versi di bawah harus diisi dari terminal PowerShell laptop sendiri; jangan menyalin versi dari perangkat lain.
+Versi terakhir yang tercatat dari lingkungan pengembangan laptop:
+- `node -v`: `v24.21.0`
+- `npm -v`: `11.19.0`
 
-- node -v: belum dicatat — isi setelah menjalankan perintah.
-- npm -v: belum dicatat — isi setelah menjalankan perintah.
+Sebelum penyerahan, jalankan ulang kedua perintah tersebut di PowerShell laptop dan perbarui angka jika hasilnya berbeda. Hasil dari sesi sebelumnya bukan pengganti pemeriksaan terminal terbaru.
 

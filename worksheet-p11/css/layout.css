@@ -1,0 +1,59 @@
+header {
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+.header-baris {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.navbar ul {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+}
+.navbar a { color: var(--color-primary); text-decoration: none; }
+.navbar a:hover { text-decoration: underline; }
+
+.page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+}
+
+/* Area dasar satu kolom; desktop diatur melalui responsif.css. */
+.isi {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "profil"
+    "proyek"
+    "film"
+    "form";
+  gap: var(--space-6);
+  padding-block: var(--space-6);
+  min-width: 0;
+  align-items: start;
+}
+
+#profil { grid-area: profil; min-width: 0; }
+#list-proyek { grid-area: proyek; min-width: 0; }
+#list-film { grid-area: film; min-width: 0; }
+#tambah-film { grid-area: form; min-width: 0; }
+
+footer {
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-fg);
+  font-size: var(--text-sm);
+}

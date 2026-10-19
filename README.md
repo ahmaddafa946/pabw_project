@@ -561,3 +561,53 @@ Buka folder repository di VS Code, jalankan `worksheet-p10/profil.html` dengan L
 ### Deklarasi penggunaan AI
 
 AI membantu menyusun pemisahan pengambilan data di `js/api.js`, penanganan status HTTP dan Promise, serta pesan keadaan antarmuka. Topik profil, data proyek, pilihan film, dan struktur halaman berasal dari proyek saya pada pertemuan sebelumnya. Saya tetap bertanggung jawab menguji hasilnya dan memahami fungsi setiap bagian kode.
+
+
+# PABW — Worksheet Pertemuan 11
+
+Pertemuan 11 melanjutkan halaman worksheet-p10/ ke folder [worksheet-p11/](worksheet-p11/). Halaman ini tetap memakai topik profil dan playlist film, sekaligus memecah JavaScript menjadi modul dengan satu tanggung jawab per berkas.
+
+## Struktur berkas
+
+- [profil.html](worksheet-p11/profil.html) — struktur halaman dan pemanggil modul utama.
+- [js/data.js](worksheet-p11/js/data.js) — data profil, data awal film, serta fungsi murni buatPerkenalan(), formatKeahlian(), saring(), dan saringFilm().
+- [js/state.js](worksheet-p11/js/state.js) — satu objek state dan fungsi pengubahnya; pilihan kategori proyek dan daftar favorit disimpan menggunakan localStorage.
+- [js/dom.js](worksheet-p11/js/dom.js) — pemilihan elemen, pembuatan kartu, render(state), perubahan kelas tombol, dan validasi form.
+- [js/events.js](worksheet-p11/js/events.js) — pemasangan pendengar klik filter, favorit, reset, serta form.
+- [js/app.js](worksheet-p11/js/app.js) — perakit modul dan alur memuat data proyek.
+- [js/api.js](worksheet-p11/js/api.js) — modul pengambilan JSON dari P10, dipakai tanpa perubahan.
+- [data/proyek.json](worksheet-p11/data/proyek.json) — salinan data proyek yang disediakan bersama worksheet.
+- css/ dan img/ — salinan CSS dan aset yang digunakan halaman P10.
+
+## Keadaan dan penyimpanan
+
+- Kategori proyek aktif dan daftar ID proyek favorit adalah keadaan yang disimpan.
+- Penyimpanan memakai kunci pabw-p11, JSON.stringify(), dan JSON.parse(), dengan versi skema 2.
+- Jika JSON rusak atau nomor versi/bentuk datanya tidak sesuai, simpanan dibuang dan halaman memakai nilai bawaan.
+- Tombol Atur ulang pilihan menghapus simpanan dan mengembalikan kategori proyek serta favorit ke nilai awal.
+- Data proyek dari server, daftar film, input form, token, kata sandi, dan data pribadi tidak disimpan ke localStorage.
+
+## Pemeriksaan sebelum penyerahan
+
+Jalankan halaman melalui server lokal (misalnya Live Server di VS Code), bukan dengan membuka HTML sebagai file://. Lakukan pemeriksaan di browser berikut dan isi hasilnya sendiri sebelum menyerahkan:
+
+1. Filter Semua Proyek, Web, dan Mobile menampilkan kategori yang sesuai; mengklik filter yang sama dua kali tidak menggandakan kartu.
+2. Klik ☆ pada proyek, lalu tutup tab dan buka kembali halaman menggunakan alamat/port server yang sama. Kategori terakhir dan tanda favorit tetap dipulihkan.
+3. Klik Atur ulang pilihan. Kategori kembali ke semua proyek dan favorit kosong.
+4. Di DevTools Console, jalankan localStorage.setItem("pabw-p11", "bukan-json"), lalu muat ulang. Halaman harus tetap terbuka dan simpanan rusak terhapus. Periksa dengan localStorage.getItem("pabw-p11") yang seharusnya menghasilkan null.
+5. Ulangi dengan localStorage.setItem("pabw-p11", "{}"). Setelah dimuat ulang, simpanan dengan versi yang tidak cocok juga harus terhapus.
+6. Pastikan filter film, tema, validasi form tambah film, pemuatan data proyek, dan penanganan pesan gagal tetap berfungsi; Console tidak menunjukkan galat impor.
+
+Simpan dua tangkapan layar untuk bukti penanganan simpanan rusak: keadaan sebelum pemulihan dan halaman setelah kembali memakai nilai bawaan.
+
+## Deklarasi penggunaan AI
+
+AI membantu menyusun rancangan pemisahan modul, alur perubahan state dan render, rancangan penyimpanan/pemulihan localStorage, serta penanganan JSON rusak dan versi skema. Topik profil/film, data proyek, CSS, dan aset halaman diteruskan dari pekerjaan P10. Sebelum menyerahkan, saya harus menjalankan checklist di atas, memeriksa kode, dan hanya mencatat pada laporan atau worksheet bagian yang benar-benar sudah saya uji dan pahami sendiri.
+
+## Pekerjaan rumah menuju P12 — Node.js LTS
+
+Versi di bawah harus diisi dari terminal PowerShell laptop sendiri; jangan menyalin versi dari perangkat lain.
+
+- node -v: belum dicatat — isi setelah menjalankan perintah.
+- npm -v: belum dicatat — isi setelah menjalankan perintah.
+

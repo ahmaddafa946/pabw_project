@@ -600,3 +600,15 @@ Jalankan halaman melalui server lokal (misalnya Live Server di VS Code), bukan d
 
 Simpan dua tangkapan layar untuk bukti penanganan simpanan rusak: keadaan sebelum pemulihan dan halaman setelah kembali memakai nilai bawaan.
 
+## Deklarasi penggunaan AI
+
+AI membantu menyusun rancangan pemisahan modul, alur perubahan state dan render, rancangan penyimpanan/pemulihan localStorage, serta penanganan JSON rusak dan versi skema. Topik profil/film, data proyek, CSS, dan aset halaman diteruskan dari pekerjaan P10. Sebelum menyerahkan, saya harus menjalankan checklist di atas, memeriksa kode, dan hanya mencatat pada laporan atau worksheet bagian yang benar-benar sudah saya uji dan pahami sendiri.
+
+## Pekerjaan rumah menuju P12 — Node.js LTS
+
+Versi terakhir yang tercatat dari lingkungan pengembangan laptop:
+- `node -v`: `v24.21.0`
+- `npm -v`: `11.19.0`
+
+Sebelum penyerahan, jalankan ulang kedua perintah tersebut di PowerShell laptop dan perbarui angka jika hasilnya berbeda. Hasil dari sesi sebelumnya bukan pengganti pemeriksaan terminal terbaru.
+

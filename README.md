@@ -579,3 +579,24 @@ Pertemuan 11 melanjutkan halaman worksheet-p10/ ke folder [worksheet-p11/](works
 - [data/proyek.json](worksheet-p11/data/proyek.json) — salinan data proyek yang disediakan bersama worksheet.
 - css/ dan img/ — salinan CSS dan aset yang digunakan halaman P10.
 
+## Keadaan dan penyimpanan
+
+- Kategori proyek aktif dan daftar ID proyek favorit adalah keadaan yang disimpan.
+- Penyimpanan memakai kunci pabw-p11, JSON.stringify(), dan JSON.parse(), dengan versi skema 2.
+- Jika JSON rusak atau nomor versi/bentuk datanya tidak sesuai, simpanan dibuang dan halaman memakai nilai bawaan.
+- Tombol Atur ulang pilihan menghapus simpanan dan mengembalikan kategori proyek serta favorit ke nilai awal.
+- Data proyek dari server, daftar film, input form, token, kata sandi, dan data pribadi tidak disimpan ke localStorage.
+
+## Pemeriksaan sebelum penyerahan
+
+Jalankan halaman melalui server lokal (misalnya Live Server di VS Code), bukan dengan membuka HTML sebagai file://. Lakukan pemeriksaan di browser berikut dan isi hasilnya sendiri sebelum menyerahkan:
+
+1. Filter Semua Proyek, Web, dan Mobile menampilkan kategori yang sesuai; mengklik filter yang sama dua kali tidak menggandakan kartu.
+2. Klik ☆ pada proyek, lalu tutup tab dan buka kembali halaman menggunakan alamat/port server yang sama. Kategori terakhir dan tanda favorit tetap dipulihkan.
+3. Klik Atur ulang pilihan. Kategori kembali ke semua proyek dan favorit kosong.
+4. Di DevTools Console, jalankan localStorage.setItem("pabw-p11", "bukan-json"), lalu muat ulang. Halaman harus tetap terbuka dan simpanan rusak terhapus. Periksa dengan localStorage.getItem("pabw-p11") yang seharusnya menghasilkan null.
+5. Ulangi dengan localStorage.setItem("pabw-p11", "{}"). Setelah dimuat ulang, simpanan dengan versi yang tidak cocok juga harus terhapus.
+6. Pastikan filter film, tema, validasi form tambah film, pemuatan data proyek, dan penanganan pesan gagal tetap berfungsi; Console tidak menunjukkan galat impor.
+
+Simpan dua tangkapan layar untuk bukti penanganan simpanan rusak: keadaan sebelum pemulihan dan halaman setelah kembali memakai nilai bawaan.
+

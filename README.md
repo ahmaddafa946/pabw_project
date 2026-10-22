@@ -612,3 +612,73 @@ Versi terakhir yang tercatat dari lingkungan pengembangan laptop:
 
 Sebelum penyerahan, jalankan ulang kedua perintah tersebut di PowerShell laptop dan perbarui angka jika hasilnya berbeda. Hasil dari sesi sebelumnya bukan pengganti pemeriksaan terminal terbaru.
 
+# PABW — Worksheet Pertemuan 12
+
+## Build Tooling, npm, dan Framework SPA
+
+Pertemuan 12 melanjutkan halaman dari Pertemuan 11 ke proyek Vue dengan Vite di folder [worksheet-p12/](worksheet-p12/). Aset P11 disalin ke proyek Vue, halaman dipisah menjadi komponen, state memakai reaktivitas Vue, dan hasil produksi diuji melalui Vite Preview.
+
+### Struktur proyek dan cara menjalankan
+
+- `index.html` — halaman utama dan titik mount Vue.
+- `src/main.js` — mengimpor `App.vue` serta enam CSS dari P04–P06: `tokens.css`, `base.css`, `layout.css`, `komponen.css`, `tema.css`, dan `responsif.css`.
+- `src/App.vue` — komponen induk halaman dan pemuatan data proyek.
+- `src/components/KepalaProfil.vue` — menampilkan profil melalui props `:profil="profil"`.
+- `src/components/TombolFilter.vue` — filter kategori dan pengaturan ulang pilihan proyek.
+- `src/components/DaftarProyek.vue` — daftar proyek, keadaan memuat/gagal/kosong, serta tombol favorit.
+- `src/components/FormKontak.vue` — menampung formulir Tambah Film yang dipertahankan dari halaman P11.
+- `src/state.js` — state reaktif melalui `reactive()`, pemuatan/pemulihan simpanan, dan pengubah state tanpa pemanggilan `render(state)` manual.
+- `src/api.js` — mengambil JSON proyek dan memeriksa status respons HTTP.
+- `public/data/proyek.json` dan `public/img/` — data JSON dan aset gambar statis.
+- `package.json` dan `package-lock.json` — deklarasi paket dan versi dependensi yang terkunci.
+
+Perintah yang digunakan:
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+```
+
+`npm run dev` digunakan selama pengembangan. `npm run build` menghasilkan folder `dist/`. `npm run preview` menjalankan hasil build tersebut untuk memeriksa versi produksi secara lokal.
+
+### Versi Node.js dan npm
+
+Versi yang terakhir tercatat untuk lingkungan pengembangan P12:
+
+| Perkakas | Versi |
+|---|---|
+| Node.js (`node -v`) | `v24.21.0` |
+| npm (`npm -v`) | `12.1.0` |
+
+Sebelum penyerahan, jalankan kembali `node -v` dan `npm -v` pada terminal yang digunakan untuk proyek, lalu pastikan angka di atas sesuai dengan hasil terminal.
+
+### Hasil build produksi
+
+Build berhasil dijalankan dengan `npm run build`; folder `dist/index.html` dan `dist/assets/` terbentuk. Aplikasi kemudian dibuka melalui `npm run preview`. Pada pengukuran DevTools Network yang tercatat untuk preview:
+
+| Pengukuran | `npm run dev` (sebelum build) | `npm run preview` (sesudah build) |
+|---|---:|---:|
+| Transfer size | Belum tercatat pada pengukuran yang tersedia; ukur di Network sebelum menyimpulkan perbandingan | Sekitar 202 kB |
+| Resource size | Belum tercatat pada pengukuran yang tersedia; ukur di Network sebelum menyimpulkan perbandingan | Sekitar 251 kB |
+| Jumlah request | Belum tercatat | 7 request |
+
+Cara ukur: buka DevTools → Network, aktifkan Disable cache, lalu muat ulang halaman. Catat jumlah request, transferred size, dan resource size untuk alamat `npm run dev`; lakukan pengukuran yang sama pada alamat `npm run preview`. Nilai sebelum build sengaja ditandai belum tercatat karena tidak ada pengukuran dev yang dapat diverifikasi dari bukti yang tersedia. Jangan mengisi angka perkiraan sebagai hasil pengukuran.
+
+### Penyimpanan dan pemeriksaan state
+
+- State menggunakan `reactive()`; template Vue menyesuaikan tampilan saat state berubah, sehingga tidak memakai `render(state)` manual.
+- `onMounted()` memulihkan pilihan dari `localStorage` dan mengambil data proyek.
+- `watch(state, (nilai) => simpan(nilai), { deep: true })` menyimpan perubahan state secara otomatis.
+- Simpanan menggunakan kunci `pabw-p11` dan format JSON. Simpanan rusak dibuang dan aplikasi kembali memakai nilai bawaan.
+- Filter kategori dan favorit diuji agar tetap ada setelah halaman dimuat ulang. `localStorage` terkait dengan origin, termasuk port yang dipakai server lokal.
+
+### Git dan berkas yang tidak di-commit
+
+`.gitignore` mengabaikan `node_modules/`, `dist/`, dan `.env`. `node_modules/` dapat dibuat ulang melalui `npm install`, sementara `dist/` dapat dibuat ulang melalui `npm run build`. `package.json` dan `package-lock.json` tetap disimpan di repositori agar konfigurasi paket dan versi dependensi dapat direproduksi.
+
+### Deklarasi penggunaan AI
+
+AI digunakan sebagai pendamping untuk memahami langkah migrasi ke Vue/Vite, menyusun dan meninjau komponen, mengalihkan state ke `reactive()`, menambahkan penyimpanan otomatis dengan `watch()`, menganalisis error, serta menyiapkan pemeriksaan build dan dokumentasi. Saya menjalankan perintah pada lingkungan saya, memeriksa hasil build, menguji halaman preview, dan mengisi hasil pengujian berdasarkan hasil yang terlihat. Topik halaman profil dan playlist film, identitas, data proyek, isi film, serta aset berasal dari pekerjaan saya pada pertemuan sebelumnya. Saya bertanggung jawab memahami kode yang digunakan dan memverifikasi hasil akhir sebelum menyerahkan pekerjaan.
+

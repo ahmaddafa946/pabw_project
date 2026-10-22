@@ -1,7 +1,106 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+﻿<template>
+<div class="page">
+    <header>
+      <input type="checkbox" id="tema" class="pengalih-tema">
+      <label for="tema" class="tombol-tema">Tema gelap</label>
 
-<template>
-  <HelloWorld />
+      <div class="header-baris">
+        <h1 id="judul-halaman-tampilan"></h1>
+        <nav class="navbar" aria-label="Navigasi halaman">
+          <ul>
+            <li><a href="#profil">Profil</a></li>
+            <li><a href="#list-proyek">Proyek</a></li>
+            <li><a href="#list-film">List Film</a></li>
+            <li><a href="#tambah-film">Tambah Film</a></li>
+            <li><a href="#footer">Tentang Saya</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="isi content">
+      <section id="profil">
+        <h2>Profil Saya</h2>
+        <div class="kartu">
+          <div class="kartu__isi">
+            <p id="profil-perkenalan"></p>
+            <p id="profil-nim"></p>
+            <p id="profil-tahun"></p>
+            <p id="profil-lokasi"></p>
+            <p id="profil-keahlian"></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="list-proyek">
+        <h2>Proyek Saya</h2>
+        <p id="ringkasan-proyek"></p>
+        <div class="baris-filter" id="filter-proyek" aria-label="Filter kategori proyek">
+          <button type="button" data-kategori="semua" aria-pressed="true">Semua Proyek</button>
+          <button type="button" data-kategori="web" aria-pressed="false">Web</button>
+          <button type="button" data-kategori="mobile" aria-pressed="false">Mobile</button>
+        </div>
+        <button type="button" id="atur-ulang">Atur ulang pilihan</button>
+        <p id="muat-proyek" role="status" hidden>Memuat data proyek...</p>
+        <p id="galat-proyek" role="alert" hidden></p>
+        <p id="kosong-proyek" hidden>Tidak ada proyek pada kategori ini.</p>
+        <div class="galeri grid" id="daftar-proyek"></div>
+      </section>
+
+      <section id="list-film">
+        <h2>List Film Favorit</h2>
+        <div class="baris-filter" id="filter" aria-label="Filter daftar film">
+          <button type="button" data-kategori="semua" aria-pressed="true">Semua Film</button>
+          <button type="button" data-kategori="tinggi" aria-pressed="false">Rating ≥ 8</button>
+          <button type="button" data-kategori="rendah" aria-pressed="false">Rating &lt; 8</button>
+          <button type="button" data-kategori="tanpa-rating" aria-pressed="false">Tanpa Rating</button>
+        </div>
+        <p id="pesan-kosong" hidden>Tidak ada film yang sesuai dengan filter.</p>
+        <div class="galeri grid" id="daftar-film"></div>
+      </section>
+
+      <section id="tambah-film">
+        <h2>Tambah Film</h2>
+        <div class="katalog">
+          <div class="kartu">
+            <div class="kartu__isi">
+              <form id="form-film" action="/simpan" method="post" novalidate>
+                <div class="form-kolom">
+                  <label for="judul-kolom">Judul</label>
+                  <input type="text" id="judul-kolom" name="judul-kolom" required aria-invalid="false" aria-describedby="galat-judul">
+                  <span class="pesan-galat" id="galat-judul">Judul film wajib diisi.</span>
+                </div>
+
+                <div class="form-kolom">
+                  <label for="tahun-kolom">Tahun Rilis</label>
+                  <input type="number" id="tahun-kolom" name="tahun-kolom" min="1888" max="2026" step="1" required aria-invalid="false" aria-describedby="galat-tahun">
+                  <span class="pesan-galat" id="galat-tahun">Masukkan tahun rilis antara 1888 sampai 2026.</span>
+                </div>
+
+                <div class="form-kolom">
+                  <label for="rating-kolom">Rating</label>
+                  <input type="number" id="rating-kolom" name="rating-kolom" min="0" max="10" step="0.1" required aria-invalid="false" aria-describedby="galat-rating">
+                  <span class="pesan-galat" id="galat-rating">Rating harus berada antara 0 sampai 10.</span>
+                </div>
+
+                <button type="submit">Simpan</button>
+                <p id="pesan-form" class="pesan-form" role="status" aria-live="polite" hidden></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <h3>Tentang Saya</h3>
+      <p>Nama: <span id="footer-nama"></span></p>
+      <p>NIM: <span id="footer-nim"></span></p>
+      <p>Tahun: <span id="footer-tahun"></span></p>
+    </footer>
+  </div>
+
+  
 </template>
+
+

@@ -1,31 +1,36 @@
+﻿import { reactive } from "vue";
 import { daftarFilmAwal } from "./data.js";
-import { render } from "./dom.js";
 
 const KUNCI = "pabw-p11";
 const VERSI = 2;
+
 const KATEGORI_PROYEK = ["semua", "web", "mobile"];
 const KATEGORI_FILM = ["semua", "tinggi", "rendah", "tanpa-rating"];
 
-export const state = {
+export const state = reactive({
   daftarProyek: [],
-  daftarFilm: daftarFilmAwal.map((film) => ({ ...film })),
+  daftarFilm: daftarFilmAwal.map((film, index) => ({
+    ...film,
+    id: index + 1,
+  })),
   kategoriAktif: "semua",
   kategoriFilmAktif: "semua",
   favorit: [],
   pesanForm: "",
   pengirimanDicoba: false,
-};
+  sedangMemuat: true,
+  galatProyek: "",
+});
 
 function hapusSimpanan() {
   try {
     localStorage.removeItem(KUNCI);
   } catch {
-    // Penyimpanan mungkin dinonaktifkan oleh kebijakan peramban.
+    // Aplikasi tetap berjalan jika penyimpanan tidak tersedia.
   }
 }
 
 export function simpan(stateAplikasi = state) {
-  // Hanya pilihan tampilan yang disimpan, bukan data proyek, profil, atau input form.
   const isi = {
     versi: VERSI,
     kategoriAktif: stateAplikasi.kategoriAktif,
@@ -35,7 +40,7 @@ export function simpan(stateAplikasi = state) {
   try {
     localStorage.setItem(KUNCI, JSON.stringify(isi));
   } catch {
-    // Halaman tetap dapat digunakan saat localStorage tidak tersedia atau penuh.
+    // Aplikasi tetap berjalan jika penyimpanan tidak tersedia.
   }
 }
 
@@ -51,7 +56,9 @@ export function muat() {
       isi.versi === VERSI &&
       KATEGORI_PROYEK.includes(isi.kategoriAktif) &&
       Array.isArray(isi.favorit) &&
-      isi.favorit.every((id) => Number.isInteger(id) && id > 0);
+      isi.favorit.every(
+        (id) => Number.isInteger(id) && id > 0
+      );
 
     if (!bentukValid) {
       hapusSimpanan();
@@ -71,27 +78,36 @@ export function pulihkan(isi) {
   state.kategoriAktif = KATEGORI_PROYEK.includes(isi.kategoriAktif)
     ? isi.kategoriAktif
     : "semua";
+
   state.favorit = Array.isArray(isi.favorit)
-    ? [...new Set(isi.favorit.filter((id) => Number.isInteger(id) && id > 0))]
+    ? [...new Set(isi.favorit.filter(
+        (id) => Number.isInteger(id) && id > 0
+      ))]
     : [];
 }
 
 export function isiProyek(daftar) {
   state.daftarProyek = Array.isArray(daftar) ? daftar : [];
-  render(state);
+
+  state.favorit = state.favorit.filter(
+    (id) => state.daftarProyek.some((proyek) => proyek.id === id)
+  );
+
+  state.sedangMemuat = false;
+  state.galatProyek = "";
 }
 
 export function pilihKategori(nilai) {
   if (!KATEGORI_PROYEK.includes(nilai)) return;
+
   state.kategoriAktif = nilai;
-  simpan(state);
-  render(state);
+  simpan();
 }
 
 export function pilihKategoriFilm(nilai) {
   if (!KATEGORI_FILM.includes(nilai)) return;
+
   state.kategoriFilmAktif = nilai;
-  render(state);
 }
 
 export function tambahFavorit(id) {
@@ -99,25 +115,7 @@ export function tambahFavorit(id) {
   if (state.favorit.includes(id)) return;
 
   state.favorit = [...state.favorit, id];
-  simpan(state);
-  render(state);
-}
-
-export function tambahFilm(film) {
-  state.daftarFilm = [...state.daftarFilm, film];
-  state.pengirimanDicoba = false;
-  state.pesanForm = film.judul + " berhasil ditambahkan ke daftar film.";
-  render(state);
-}
-
-export function aturPesanForm(pesan) {
-  state.pesanForm = pesan;
-  render(state);
-}
-
-export function mulaiValidasi() {
-  state.pengirimanDicoba = true;
-  render(state);
+  simpan();
 }
 
 export function aturUlang() {
@@ -125,5 +123,30 @@ export function aturUlang() {
   state.kategoriAktif = "semua";
   state.kategoriFilmAktif = "semua";
   state.favorit = [];
-  render(state);
+}
+
+export function tambahFilm(film) {
+  state.daftarFilm = [
+    ...state.daftarFilm,
+    { ...film, id: film.id ?? Date.now() },
+  ];
+
+  state.pengirimanDicoba = false;
+  state.pesanForm = film.judul + " berhasil ditambahkan ke daftar film.";
+}
+
+export function aturPesanForm(pesan) {
+  state.pesanForm = pesan;
+}
+
+export function mulaiValidasi() {
+  state.pengirimanDicoba = true;
+}
+
+export function aturMemuat(aktif) {
+  state.sedangMemuat = Boolean(aktif);
+}
+
+export function tampilkanGalat(pesan) {
+  state.galatProyek = pesan;
 }

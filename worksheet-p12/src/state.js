@@ -1,4 +1,4 @@
-﻿import { reactive } from "vue";
+import { reactive } from "vue";
 import { daftarFilmAwal } from "./data.js";
 
 const KUNCI = "pabw-p11";
@@ -101,7 +101,6 @@ export function pilihKategori(nilai) {
   if (!KATEGORI_PROYEK.includes(nilai)) return;
 
   state.kategoriAktif = nilai;
-  simpan();
 }
 
 export function pilihKategoriFilm(nilai) {
@@ -115,7 +114,6 @@ export function tambahFavorit(id) {
   if (state.favorit.includes(id)) return;
 
   state.favorit = [...state.favorit, id];
-  simpan();
 }
 
 export function aturUlang() {

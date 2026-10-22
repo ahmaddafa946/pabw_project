@@ -1,5 +1,5 @@
-﻿<script setup>
-import { computed, onMounted } from 'vue';
+<script setup>
+import { computed, onMounted, watch } from 'vue';
 
 import { profil, saringFilm } from './data.js';
 import { ambilProyek } from './api.js';
@@ -12,6 +12,7 @@ import {
   aturMemuat,
   tampilkanGalat,
   pilihKategoriFilm,
+  simpan,
 } from './state.js';
 
 import KepalaProfil from './components/KepalaProfil.vue';
@@ -22,6 +23,8 @@ import FormKontak from './components/FormKontak.vue';
 const filmTampil = computed(() =>
   saringFilm(state.daftarFilm, state.kategoriFilmAktif)
 );
+
+watch(state, (nilai) => simpan(nilai), { deep: true });
 
 onMounted(async () => {
   document.title = 'Profil ' + profil.nama;
